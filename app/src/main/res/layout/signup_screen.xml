@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".signup_screen">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="50dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textClick"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:clickable="true"
+                android:fontFamily="@font/mulish"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                android:text="Back"
+                android:textColor="@color/textClick"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/mulish"
+                android:text="Buat akun"
+                android:textColor="@color/textColor"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/mulish"
+                android:text="Masukan Nama, NIS, dan Password \n sesuai dengan data diri anda "
+                android:textAlignment="center"
+                android:textColor="@color/hinText"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/mulish"
+                android:text="Nama"
+                android:textColor="@color/textColor"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/editTextTextPassword2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/rounded_textfield"
+                android:ems="10"
+                android:fontFamily="@font/mulish"
+                android:hint="Masukan nama lengkap anda "
+                android:inputType="textPassword"
+                android:minHeight="48dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/hinText" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:fontFamily="@font/mulish"
+                android:text="NIS"
+                android:textColor="@color/textColor"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/editTextTextPassword35"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/rounded_textfield"
+                android:fontFamily="@font/mulish"
+                android:hint="Masukan NIS"
+                android:inputType="number"
+                android:maxLength="4"
+                android:minHeight="48dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/hinText" />
+
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:fontFamily="@font/mulish"
+                android:text="Tingkatan"
+                android:textColor="@color/textColor"
+                android:textSize="17sp" />
+
+            <Spinner
+                android:id="@+id/dropdown4"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="5dp"
+                android:autofillHints="Masukkan Tingkatan anda"
+                android:background="@drawable/style_spinner"
+                android:entries="@array/Tingkatan"></Spinner>
+
+            <TextView
+                android:id="@+id/textView51"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:fontFamily="@font/mulish"
+                android:text="Kelas"
+                android:textColor="@color/textColor"
+                android:textSize="17sp" />
+
+            <Spinner
+                android:id="@+id/dropdown3"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="5dp"
+                android:autofillHints="Masukkan Kelas anda"
+                android:background="@drawable/style_spinner"
+                android:entries="@array/Kelas"></Spinner>
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:fontFamily="@font/mulish"
+                android:text="No. Telephone"
+                android:textColor="@color/textColor"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/editText56"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/rounded_textfield"
+                android:fontFamily="@font/mulish"
+                android:hint="Masukan No Telephone anda"
+                android:inputType="number"
+                android:maxLength="4"
+                android:minHeight="48dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/hinText" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:fontFamily="@font/mulish"
+                android:text="Jenis kelamin"
+                android:textColor="@color/textColor"
+                android:textSize="17sp" />
+
+            <Spinner
+                android:id="@+id/dropdown2"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="5dp"
+                android:autofillHints="Masukkan jenis kelamin anda"
+                android:background="@drawable/style_spinner"
+                android:entries="@array/Jk"></Spinner>
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:fontFamily="@font/mulish"
+                android:text="Password"
+                android:textColor="@color/textColor"
+                android:textSize="17sp" />
+
+
+            <EditText
+                android:id="@+id/editTextTextPassword6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/rounded_textfield"
+                android:ems="10"
+                android:fontFamily="@font/mulish"
+                android:hint="Masukan Password anda "
+                android:inputType="textPassword"
+                android:minHeight="48dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/hinText" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:fontFamily="@font/mulish"
+                android:text="Konfirmasi Password"
+                android:textColor="@color/textColor"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/editTextTextPassword9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/rounded_textfield"
+                android:ems="10"
+                android:fontFamily="@font/mulish"
+                android:hint="Masukan Password anda "
+                android:inputType="textPassword"
+                android:minHeight="48dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/hinText" />
+
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="43dp"
+                android:fontFamily="@font/mulish_semibold"
+                android:text="Masuk"
+                android:textSize="17sp" />
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+</LinearLayout>

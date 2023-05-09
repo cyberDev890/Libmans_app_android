@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">LibmanApps</string>
+    <string-array name="Tingkatan">
+        <item>VII</item>
+        <item>VIII</item>
+        <item>IX</item>
+    </string-array>
+    <string-array name="Kelas">
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+        <item>D</item>
+        <item>E</item>
+        <item>F</item>
+        <item>G</item>
+    </string-array>
+    <string-array name="Jk">
+        <item>Laki-laki</item>
+        <item>Perempuan</item>
+    </string-array>
+</resources>
