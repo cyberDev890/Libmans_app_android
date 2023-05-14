@@ -1,4 +1,4 @@
-package com.libman;
+package com.libman.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import com.libman.R;
 
 
 public class splash_screen extends AppCompatActivity {

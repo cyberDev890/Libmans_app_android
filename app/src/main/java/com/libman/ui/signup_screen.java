@@ -1,10 +1,10 @@
 
-package com.libman;
+package com.libman.ui;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+import com.libman.R;
 public class signup_screen extends AppCompatActivity {
 
     @Override

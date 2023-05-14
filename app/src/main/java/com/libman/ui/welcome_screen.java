@@ -1,8 +1,8 @@
-package com.libman;
+package com.libman.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
+import android.os.Bundle;import com.libman.R;
 
 public class welcome_screen extends AppCompatActivity {
 

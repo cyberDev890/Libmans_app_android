@@ -1,14 +1,16 @@
-package com.libman;
+package com.libman.controller;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class memerlukan_tindakan extends AppCompatActivity {
+import com.libman.R;
+
+public class detail_buku extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_memerlukan_tindakan);
+        setContentView(R.layout.activity_detail_buku);
     }
 }

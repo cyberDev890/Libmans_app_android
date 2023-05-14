@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".signup_screen">
+    android:padding="8dp"
+    tools:context=".ui.signup_screen">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -21,18 +22,7 @@
             android:layout_marginRight="50dp"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textClick"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:clickable="true"
-                android:fontFamily="@font/mulish"
-                android:minWidth="48dp"
-                android:minHeight="48dp"
-                android:text="Back"
-                android:textColor="@color/textClick"
-                android:textSize="17sp" />
+
 
             <TextView
                 android:id="@+id/textView3"
@@ -244,7 +234,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="43dp"
                 android:fontFamily="@font/mulish_semibold"
-                android:text="Masuk"
+                android:text="Daftar"
+                android:textColor="@color/white"
+                android:background="@drawable/rounded_button"
                 android:textSize="17sp" />
 
 

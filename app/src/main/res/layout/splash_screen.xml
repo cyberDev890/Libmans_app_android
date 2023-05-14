@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/background"
-    tools:context=".splash_screen">
+    tools:context=".ui.splash_screen">
 
     <ImageView
         android:id="@+id/imgLogo"

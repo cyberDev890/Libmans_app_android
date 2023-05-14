@@ -12,26 +12,30 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31">
         <activity
-            android:name=".daftar_buku"
+            android:name=".controller.detail_buku"
             android:exported="false" />
         <activity
-            android:name=".memerlukan_tindakan"
+            android:name=".ui.daftar_buku"
             android:exported="false" />
         <activity
-            android:name=".splash_screen"
+            android:name=".ui.memerlukan_tindakan"
             android:exported="false" />
         <activity
-            android:name=".welcome_screen"
+            android:name=".ui.dashboard"
             android:exported="false" />
         <activity
-            android:name=".signin_screen"
+            android:name=".ui.welcome_screen"
             android:exported="false" />
         <activity
-            android:name=".signup_screen"
+            android:name=".ui.signin_screen"
             android:exported="false" />
         <activity
-            android:name=".dashboard"
-            android:exported="true">
+            android:name=".ui.signup_screen"
+            android:exported="false" />
+        <activity
+            android:name=".ui.splash_screen"
+            android:exported="true"
+            android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
