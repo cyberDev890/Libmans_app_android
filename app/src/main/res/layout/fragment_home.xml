@@ -10,7 +10,7 @@
 
 
         <LinearLayout
-            android:id="@+id/card_buku"
+            android:id="@+id/linear_card_tindakan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"

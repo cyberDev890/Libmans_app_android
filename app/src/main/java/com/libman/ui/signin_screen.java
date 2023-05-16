@@ -7,19 +7,34 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.libman.R;
+import com.libman.api.ApiClient;
+import com.libman.api.ApiInterface;
+import com.libman.model.login.Login;
+import com.libman.model.login.LoginData;
+import com.libman.sesion.SesionManager;
 
-public class signin_screen extends AppCompatActivity {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class signin_screen extends AppCompatActivity implements View.OnClickListener {
     private EditText edittextPassword, editTextNis;
     private TextView btn_signUp;
     private Button btn_signIn;
     private boolean passwordVisible;
+    ApiInterface apiInterface;
+    SesionManager sesionManager;
+    String NIS, Password;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +44,10 @@ public class signin_screen extends AppCompatActivity {
         edittextPassword = findViewById(R.id.edt_pw);
         btn_signUp = findViewById(R.id.btn_daftar);
         btn_signIn = findViewById(R.id.btn_masuk);
+        btn_signUp.setOnClickListener(this);
+        btn_signIn.setOnClickListener(this);
+
+
         edittextPassword.setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
                 final int inType = 2;
@@ -54,19 +73,51 @@ public class signin_screen extends AppCompatActivity {
 
         });
 
-        btn_signUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), signup_screen.class);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_masuk:
+                NIS = editTextNis.getText().toString();
+                Password = edittextPassword.getText().toString();
+                login(NIS, Password);
+
+                break;
+
+            case R.id.btn_daftar:
+                Intent intent = new Intent(this, signup_screen.class);
                 startActivity(intent);
+                break;
+        }
+
+    }
+
+    private void login(String NIS, String password) {
+        apiInterface = ApiClient.getClient().create(ApiInterface.class);
+        Call<Login> loginCall = apiInterface.loginResponse(NIS, password);
+        loginCall.enqueue(new Callback<Login>() {
+            @Override
+            public void onResponse(Call<Login> call, Response<Login> response) {
+                if (response.body() != null && response.isSuccessful() && response.body().isStatus()) {
+//                    sesionManager = new SesionManager(signin_screen.this);
+////                    loginData Logindata = response.body().getloginData();
+////                    sesionManager.createLoginSesion(Logindata);
+//                    Toast.makeText(signin_screen.this, response.body().getLoginData().getNamaSiswa(), Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(signin_screen.this, dashboard.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(signin_screen.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Login> call, Throwable t) {
+                Toast.makeText(signin_screen.this, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+
             }
         });
-        btn_signIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), dashboard.class);
-                startActivity(intent);
-            }
-        });
+
+
     }
 }

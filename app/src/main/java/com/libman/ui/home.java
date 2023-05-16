@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+
 import com.libman.R;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import java.util.ArrayList;
@@ -18,6 +20,7 @@ public class home extends Fragment {
 
     private RecyclerView.Adapter adapterListbuku;
     private RecyclerView rvListbuku;
+    private ImageView img_more;
 
 
     @Override
@@ -26,6 +29,18 @@ public class home extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         initRecyclerView(view);
+        img_more = view.findViewById(R.id.ic_more);
+
+        img_more.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Replace the current fragment with 'daftar_buku' fragment
+                Fragment daftarBukuFragment = new daftar_buku();
+                getParentFragmentManager().beginTransaction()
+                        .replace(R.id.framelayout_main, daftarBukuFragment)
+                        .commit();
+            }
+        });
         return view;
     }
     private void initRecyclerView(View view) {

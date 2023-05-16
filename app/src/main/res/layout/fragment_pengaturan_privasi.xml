@@ -1,16 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".pengaturan_privasi">
+    android:orientation="vertical"
+    tools:context=".ui.pengaturan_privasi">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            app:cardCornerRadius="100dp">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/foto" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_marginTop="15dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/mulish"
+            android:text="Budi Do Re Mi"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:textAlignment="center" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/mulish"
+            android:layout_marginTop="10dp"
+            android:text="Pengguna"
+            android:textAlignment="center" />
+
+    </LinearLayout>
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textSize="30sp"
-        android:gravity="center"
-        android:text="pengaturan privasi" />
+        android:layout_gravity="center"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="50dp"
+        android:orientation="vertical">
 
-</FrameLayout>
+        <EditText
+            android:id="@+id/editTextTextPassword35"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/rounded_textfield"
+            android:fontFamily="@font/mulish"
+            android:hint="Masukan NIS"
+            android:inputType="number"
+            android:maxLength="4"
+            android:minHeight="48dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/hinText" />
+
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:fontFamily="@font/mulish"
+            android:text="Tingkatan"
+            android:textColor="@color/textColor"
+            android:textSize="17sp" />
+
+        <Spinner
+            android:id="@+id/dropdown4"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="5dp"
+            android:autofillHints="Masukkan Tingkatan anda"
+            android:background="@drawable/style_spinner"
+            android:entries="@array/Tingkatan"></Spinner>
+
+        <TextView
+            android:id="@+id/textView51"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:fontFamily="@font/mulish"
+            android:text="Kelas"
+            android:textColor="@color/textColor"
+            android:textSize="17sp" />
+
+        <Spinner
+            android:id="@+id/dropdown3"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="5dp"
+            android:autofillHints="Masukkan Kelas anda"
+            android:background="@drawable/style_spinner"
+            android:entries="@array/Kelas"></Spinner>
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:fontFamily="@font/mulish"
+            android:text="No. Telephone"
+            android:textColor="@color/textColor"
+            android:textSize="17sp" />
+
+        <EditText
+            android:id="@+id/editText56"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/rounded_textfield"
+            android:fontFamily="@font/mulish"
+            android:hint="Masukan No Telephone anda"
+            android:inputType="number"
+            android:maxLength="4"
+            android:minHeight="48dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/hinText" />
+        <Button
+            android:id="@+id/btn_daftartoLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="43dp"
+            android:fontFamily="@font/mulish_semibold"
+            android:text="Simpan"
+            android:textColor="@color/white"
+            android:background="@drawable/rounded_button"
+            android:textSize="17sp" />
+
+    </LinearLayout>
+
+</LinearLayout>

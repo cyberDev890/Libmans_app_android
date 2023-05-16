@@ -7,12 +7,13 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.libman.R;
 
 public class daftar_buku extends Fragment {
 
-
+private TextView toolbar1;
     public daftar_buku() {
         // Required empty public constructor
     }
@@ -30,6 +31,8 @@ public class daftar_buku extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_daftar_buku, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_daftar_buku, container, false);
+        return view;
     }
 }

@@ -12,6 +12,7 @@
         android:id="@+id/img_buku"
         android:layout_width="wrap_content"
         android:layout_height="160dp"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -52,6 +53,7 @@
         android:layout_height="10dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="10dp"
+        android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_semester"
         app:srcCompat="@android:drawable/btn_star_big_on" />
