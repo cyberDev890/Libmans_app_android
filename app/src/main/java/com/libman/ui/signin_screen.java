@@ -33,7 +33,7 @@ public class signin_screen extends AppCompatActivity implements View.OnClickList
     private boolean passwordVisible;
     ApiInterface apiInterface;
     SesionManager sesionManager;
-    String NIS, Password;
+    String Nis, Password;
 
 
     @Override
@@ -46,8 +46,6 @@ public class signin_screen extends AppCompatActivity implements View.OnClickList
         btn_signIn = findViewById(R.id.btn_masuk);
         btn_signUp.setOnClickListener(this);
         btn_signIn.setOnClickListener(this);
-
-
         edittextPassword.setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
                 final int inType = 2;
@@ -79,10 +77,9 @@ public class signin_screen extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_masuk:
-                NIS = editTextNis.getText().toString();
+                Nis = editTextNis.getText().toString();
                 Password = edittextPassword.getText().toString();
-                login(NIS, Password);
-
+                login(Nis, Password);
                 break;
 
             case R.id.btn_daftar:
@@ -100,12 +97,13 @@ public class signin_screen extends AppCompatActivity implements View.OnClickList
             @Override
             public void onResponse(Call<Login> call, Response<Login> response) {
                 if (response.body() != null && response.isSuccessful() && response.body().isStatus()) {
-//                    sesionManager = new SesionManager(signin_screen.this);
-////                    loginData Logindata = response.body().getloginData();
-////                    sesionManager.createLoginSesion(Logindata);
-//                    Toast.makeText(signin_screen.this, response.body().getLoginData().getNamaSiswa(), Toast.LENGTH_SHORT).show();
+                    LoginData logindata = response.body().getLoginData();
+                    sesionManager = new SesionManager(signin_screen.this);
+                    sesionManager.createLoginSesion(logindata);
+                    Toast.makeText(signin_screen.this, response.body().getLoginData().getNamaSiswa(), Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(signin_screen.this, dashboard.class);
                     startActivity(intent);
+                    finish();
                 } else {
                     Toast.makeText(signin_screen.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                 }

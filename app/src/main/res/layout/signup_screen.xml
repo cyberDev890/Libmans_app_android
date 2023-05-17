@@ -43,7 +43,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/mulish"
-                android:text="Masukan Nama, NIS, dan Password \n sesuai dengan data diri anda "
+                android:text="Masukan Nama, NIS, dan Password \n sesuai dengan registerData diri anda "
                 android:textAlignment="center"
                 android:textColor="@color/hinText"
                 android:textSize="14sp" />
@@ -59,7 +59,7 @@
                 android:textSize="17sp" />
 
             <EditText
-                android:id="@+id/editTextTextPassword2"
+                android:id="@+id/edt_namaSingIn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -67,7 +67,7 @@
                 android:ems="10"
                 android:fontFamily="@font/mulish"
                 android:hint="Masukan nama lengkap anda "
-                android:inputType="textPassword"
+                android:inputType="text"
                 android:minHeight="48dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/hinText" />
@@ -83,7 +83,7 @@
                 android:textSize="17sp" />
 
             <EditText
-                android:id="@+id/editTextTextPassword35"
+                android:id="@+id/edt_nisSingIn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -108,7 +108,7 @@
                 android:textSize="17sp" />
 
             <Spinner
-                android:id="@+id/dropdown4"
+                android:id="@+id/dropdownTingkatansingIn"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginTop="5dp"
@@ -127,7 +127,7 @@
                 android:textSize="17sp" />
 
             <Spinner
-                android:id="@+id/dropdown3"
+                android:id="@+id/dropdownKelassignIn"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginTop="5dp"
@@ -146,7 +146,7 @@
                 android:textSize="17sp" />
 
             <EditText
-                android:id="@+id/editText56"
+                android:id="@+id/edt_telpSingIn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -154,7 +154,7 @@
                 android:fontFamily="@font/mulish"
                 android:hint="Masukan No Telephone anda"
                 android:inputType="number"
-                android:maxLength="4"
+                android:maxLength="8"
                 android:minHeight="48dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/hinText" />
@@ -170,7 +170,7 @@
                 android:textSize="17sp" />
 
             <Spinner
-                android:id="@+id/dropdown2"
+                android:id="@+id/dropdownJKsignIn"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginTop="5dp"
@@ -190,7 +190,7 @@
 
 
             <EditText
-                android:id="@+id/editTextTextPassword6"
+                android:id="@+id/edt_passwordSingin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -214,7 +214,7 @@
                 android:textSize="17sp" />
 
             <EditText
-                android:id="@+id/editTextTextPassword9"
+                android:id="@+id/edtKonfirmasiPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -227,7 +227,17 @@
                 android:textColor="@color/black"
                 android:textColorHint="@color/hinText" />
 
-
+            <EditText
+                android:id="@+id/edt_gambar"
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/mulish"
+                android:inputType="none"
+                android:text="gambarkosong"
+                android:textSize="5sp"
+                android:textColor="@color/black"
+           />
             <Button
                 android:id="@+id/btn_daftartoLogin"
                 android:layout_width="match_parent"

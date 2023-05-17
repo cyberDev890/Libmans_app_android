@@ -4,8 +4,8 @@ import com.google.gson.annotations.SerializedName;
 
 public class Login{
 
-	@SerializedName("LoginData")
-	private LoginData LoginData;
+	@SerializedName("data")
+	private LoginData loginData;
 
 	@SerializedName("message")
 	private String message;
@@ -13,12 +13,12 @@ public class Login{
 	@SerializedName("status")
 	private boolean status;
 
-	public void setLoginData(LoginData LoginData){
-		this.LoginData = LoginData;
+	public void setLoginData(LoginData loginData){
+		this.loginData = loginData;
 	}
 
 	public LoginData getLoginData(){
-		return LoginData;
+		return loginData;
 	}
 
 	public void setMessage(String message){

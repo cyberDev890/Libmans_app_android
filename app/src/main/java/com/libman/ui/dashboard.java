@@ -48,10 +48,10 @@ public class dashboard extends AppCompatActivity {
         toggle.syncState();
         toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.icon));
         drawerLayout.addDrawerListener(toggle);
-//        sesionManager = new SesionManager(dashboard.this);
-//        if (!sesionManager.isLogin()) {
-//        moveTologin();
-//        }
+        sesionManager = new SesionManager(dashboard.this);
+        if (!sesionManager.isLogin()) {
+        moveTologin();
+        }
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -90,16 +90,13 @@ public class dashboard extends AppCompatActivity {
                         break;
                     case R.id.ic_tentang:
                         fragmentR(new tentang_aplikasi());
-                        toolbar1.setText("      Tentang Aplikasi");
+                        toolbar1.setText("Tentang Aplikasi");
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
 
-
                     case R.id.ic_logout:
-                        // tambahkan kode untuk logout dari aplikasi di sini
-                        Intent intent = new Intent(dashboard.this, signin_screen.class);
-                        startActivity(intent);
-                        finish(); // tambahkan kode untuk mengakhiri activity
+                        sesionManager.logoutSession();
+                        moveTologin();
                         break;
 
 
