@@ -20,11 +20,15 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 public class dashboard extends AppCompatActivity {
     private DrawerLayout drawerLayout;
@@ -41,7 +45,28 @@ public class dashboard extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawer_layout);
         toolbar = findViewById(R.id.toolbar);
         TextView toolbar1 = findViewById(R.id.toolbar_title);
+        sesionManager = new SesionManager(this);
         navigationView = findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
+        txt_name = headerView.findViewById(R.id.txt_nama_profile);
+        String nama = sesionManager.getUserDetail().get(SesionManager.Nama_siswa);
+        txt_name.setText(nama);
+        ImageView imgProfile = headerView.findViewById(R.id.img_profile);
+// Dapatkan URL gambar profil dari sesionManager
+        String baseUrl = "http://192.168.1.15/api_libman/";
+        String gambarUrl = sesionManager.getUserDetail().get(SesionManager.Gambar);
+        String fullUrl = baseUrl + gambarUrl;
+
+// Konfigurasikan RequestOptions untuk memberikan nilai awalan URL
+        RequestOptions options = new RequestOptions()
+                .placeholder(R.drawable.ic_person)
+                .error(R.drawable.ic_person);
+
+// Muat gambar menggunakan Glide dengan RequestOptions
+        Glide.with(this)
+                .load(fullUrl)
+                .apply(options)
+                .into(imgProfile);
         fragmentR(new home());
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
@@ -50,8 +75,9 @@ public class dashboard extends AppCompatActivity {
         drawerLayout.addDrawerListener(toggle);
         sesionManager = new SesionManager(dashboard.this);
         if (!sesionManager.isLogin()) {
-        moveTologin();
+            moveTologin();
         }
+        System.out.println("gambarUrl = " + gambarUrl);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -114,6 +140,7 @@ public class dashboard extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
     @Override
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
