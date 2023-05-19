@@ -4,20 +4,17 @@ import com.google.gson.annotations.SerializedName;
 
 public class RegisterData {
 
+	@SerializedName("id_data_kelas")
+	private String idDataKelas;
+
 	@SerializedName("notelp")
 	private String notelp;
 
 	@SerializedName("password")
 	private String password;
 
-	@SerializedName("tingkatan")
-	private String tingkatan;
-
 	@SerializedName("nama_siswa")
 	private String namaSiswa;
-
-	@SerializedName("kelas")
-	private String kelas;
 
 	@SerializedName("NIS")
 	private String nIS;
@@ -27,6 +24,14 @@ public class RegisterData {
 
 	@SerializedName("gambar")
 	private String gambar;
+
+	public void setIdDataKelas(String idDataKelas){
+		this.idDataKelas = idDataKelas;
+	}
+
+	public String getIdDataKelas(){
+		return idDataKelas;
+	}
 
 	public void setNotelp(String notelp){
 		this.notelp = notelp;
@@ -44,28 +49,12 @@ public class RegisterData {
 		return password;
 	}
 
-	public void setTingkatan(String tingkatan){
-		this.tingkatan = tingkatan;
-	}
-
-	public String getTingkatan(){
-		return tingkatan;
-	}
-
 	public void setNamaSiswa(String namaSiswa){
 		this.namaSiswa = namaSiswa;
 	}
 
 	public String getNamaSiswa(){
 		return namaSiswa;
-	}
-
-	public void setKelas(String kelas){
-		this.kelas = kelas;
-	}
-
-	public String getKelas(){
-		return kelas;
 	}
 
 	public void setNIS(String nIS){

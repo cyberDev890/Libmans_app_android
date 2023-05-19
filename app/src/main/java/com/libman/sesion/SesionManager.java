@@ -17,11 +17,13 @@ public class SesionManager {
     public static final String ISLOGIN = "islogin";
     public static final String NIS = "NIS";
     public static final String Nama_siswa = "nama_siswa";
-    public static final String Tingkatan = "tingkatan";
-    public static final String Kelas = "kelas";
+    public static final String Password = "password";
     public static final String Jenis_kelamin = "jenis_kelamin";
     public static final String Notelp = "notelp";
+    public static final String Api_token = "api_token";
     public static final String Gambar = "gambar";
+    public static final String Update = "updated_at";
+    public static final String id_data_kelas = "id_data_kelas";
 
     public SesionManager(Context context) {
         this._context = context;
@@ -31,25 +33,25 @@ public class SesionManager {
 
     public void createLoginSesion(LoginData user) {
         editor.putBoolean(ISLOGIN, true);
-        editor.putString(NIS, user.getNIS());
+        editor.putInt(NIS, user.getNIS());
         editor.putString(Nama_siswa, user.getNamaSiswa());
-        editor.putString(Tingkatan, user.getTingkatan());
-        editor.putString(Kelas, user.getKelas());
         editor.putString(Jenis_kelamin, user.getJenisKelamin());
-        editor.putString(Notelp, user.getNotelp());
-        editor.putString(Gambar, user.getGambar().toString());
+        editor.putString(Api_token, user.getApiToken());
+        editor.putString(Update, user.getUpdatedAt());
+        editor.putInt(id_data_kelas, user.getIdDataKelas());
+        editor.putString(Gambar, (String) user.getGambar());
         editor.commit();
     }
 
     public HashMap<String, String> getUserDetail() {
         HashMap<String, String> user = new HashMap<>();
-        user.put(NIS, sharedPreferences.getString(NIS, null));
+        user.put(NIS, String.valueOf(sharedPreferences.getInt(NIS, 0)));
         user.put(Nama_siswa, sharedPreferences.getString(Nama_siswa, null));
-        user.put(Tingkatan, sharedPreferences.getString(Tingkatan, null));
-        user.put(Kelas, sharedPreferences.getString(Kelas, null));
         user.put(Jenis_kelamin, sharedPreferences.getString(Jenis_kelamin, null));
-        user.put(Notelp, sharedPreferences.getString(Notelp, null));
-        user.put(Gambar, sharedPreferences.getString(Gambar, null));
+        user.put(Api_token, sharedPreferences.getString(Api_token, null));
+        user.put(Update, sharedPreferences.getString(Jenis_kelamin, null));
+        user.put(id_data_kelas, String.valueOf(sharedPreferences.getInt(id_data_kelas, 0)));
+        user.put(Gambar, sharedPreferences.getString((String) Gambar, null));
         return user;
     }
 

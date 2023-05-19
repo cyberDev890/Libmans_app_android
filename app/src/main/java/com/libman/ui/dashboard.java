@@ -53,7 +53,7 @@ public class dashboard extends AppCompatActivity {
         txt_name.setText(nama);
         ImageView imgProfile = headerView.findViewById(R.id.img_profile);
 // Dapatkan URL gambar profil dari sesionManager
-        String baseUrl = "http://192.168.1.15/api_libman/";
+        String baseUrl = "http://192.168.1.12/api_libman/uploads/";
         String gambarUrl = sesionManager.getUserDetail().get(SesionManager.Gambar);
         String fullUrl = baseUrl + gambarUrl;
 

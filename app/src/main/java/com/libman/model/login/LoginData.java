@@ -2,28 +2,42 @@ package com.libman.model.login;
 
 import com.google.gson.annotations.SerializedName;
 
-public class LoginData{
+public class LoginData {
+
+	@SerializedName("id_data_kelas")
+	private int idDataKelas;
 
 	@SerializedName("notelp")
 	private String notelp;
 
-	@SerializedName("tingkatan")
-	private String tingkatan;
+	@SerializedName("password")
+	private String password;
 
 	@SerializedName("nama_siswa")
 	private String namaSiswa;
 
-	@SerializedName("kelas")
-	private String kelas;
+	@SerializedName("updated_at")
+	private String updatedAt;
+
+	@SerializedName("api_token")
+	private String apiToken;
 
 	@SerializedName("NIS")
-	private String nIS;
+	private int nIS;
 
 	@SerializedName("jenis_kelamin")
 	private String jenisKelamin;
 
 	@SerializedName("gambar")
-	private String gambar;
+	private Object gambar;
+
+	public void setIdDataKelas(int idDataKelas){
+		this.idDataKelas = idDataKelas;
+	}
+
+	public int getIdDataKelas(){
+		return idDataKelas;
+	}
 
 	public void setNotelp(String notelp){
 		this.notelp = notelp;
@@ -33,12 +47,12 @@ public class LoginData{
 		return notelp;
 	}
 
-	public void setTingkatan(String tingkatan){
-		this.tingkatan = tingkatan;
+	public void setPassword(String password){
+		this.password = password;
 	}
 
-	public String getTingkatan(){
-		return tingkatan;
+	public String getPassword(){
+		return password;
 	}
 
 	public void setNamaSiswa(String namaSiswa){
@@ -49,19 +63,27 @@ public class LoginData{
 		return namaSiswa;
 	}
 
-	public void setKelas(String kelas){
-		this.kelas = kelas;
+	public void setUpdatedAt(String updatedAt){
+		this.updatedAt = updatedAt;
 	}
 
-	public String getKelas(){
-		return kelas;
+	public String getUpdatedAt(){
+		return updatedAt;
 	}
 
-	public void setNIS(String nIS){
+	public void setApiToken(String apiToken){
+		this.apiToken = apiToken;
+	}
+
+	public String getApiToken(){
+		return apiToken;
+	}
+
+	public void setNIS(int nIS){
 		this.nIS = nIS;
 	}
 
-	public String getNIS(){
+	public int getNIS(){
 		return nIS;
 	}
 
@@ -73,11 +95,11 @@ public class LoginData{
 		return jenisKelamin;
 	}
 
-	public void setGambar(String gambar){
+	public void setGambar(Object gambar){
 		this.gambar = gambar;
 	}
 
-	public String getGambar(){
+	public Object getGambar(){
 		return gambar;
 	}
 }

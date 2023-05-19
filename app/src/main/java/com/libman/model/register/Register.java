@@ -7,26 +7,26 @@ public class Register{
 	@SerializedName("data")
 	private RegisterData registerData;
 
-	@SerializedName("message")
-	private String message;
+	@SerializedName("massage")
+	private String massage;
 
 	@SerializedName("status")
 	private boolean status;
 
-	public void setRegisterData(RegisterData registerData){
+	public void setData(RegisterData registerData){
 		this.registerData = registerData;
 	}
 
-	public RegisterData getRegisterData(){
+	public RegisterData getData(){
 		return registerData;
 	}
 
-	public void setMessage(String message){
-		this.message = message;
+	public void setMassage(String massage){
+		this.massage = massage;
 	}
 
-	public String getMessage(){
-		return message;
+	public String getMassage(){
+		return massage;
 	}
 
 	public void setStatus(boolean status){

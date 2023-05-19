@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
-    private static final String BASE_URL = "http://192.168.1.15/api_libman/"; // Ubah URL dasar menjadi sesuai dengan persyaratan
+    private static final String BASE_URL = "https://0314-202-67-41-25.ngrok-free.app/api/"; // Ubah URL dasar menjadi sesuai dengan persyaratan
 
     private static Retrofit retrofit;
 

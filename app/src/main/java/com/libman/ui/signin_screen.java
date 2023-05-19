@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -90,17 +89,17 @@ public class signin_screen extends AppCompatActivity implements View.OnClickList
 
     }
 
-    private void login(String NIS, String password) {
+    private void login(String nis, String password) {
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        Call<Login> loginCall = apiInterface.loginResponse(NIS, password);
+        Call<Login> loginCall = apiInterface.loginResponse(nis, password);
         loginCall.enqueue(new Callback<Login>() {
             @Override
             public void onResponse(Call<Login> call, Response<Login> response) {
-                if (response.body() != null && response.isSuccessful() && response.body().isStatus()) {
-                    LoginData logindata = response.body().getLoginData();
+                if (response.body() != null && response.isSuccessful() && response.body().getStatus()) {
+                    LoginData logindata = response.body().getData();
                     sesionManager = new SesionManager(signin_screen.this);
                     sesionManager.createLoginSesion(logindata);
-                    Toast.makeText(signin_screen.this, response.body().getLoginData().getNamaSiswa(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(signin_screen.this, response.body().getData().getNamaSiswa(), Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(signin_screen.this, dashboard.class);
                     startActivity(intent);
                     finish();

@@ -1,32 +1,46 @@
 package com.libman.api;
 
 import com.libman.model.login.Login;
+import com.libman.model.profile.Profile;
 import com.libman.model.register.Register;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.http.Multipart;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 
 public interface ApiInterface {
     @FormUrlEncoded
-    @POST("login2.php")
+    @POST("login")
         // Sesuaikan dengan path ke login.php pada API Anda
     Call<Login> loginResponse(
             @Field("NIS") String nis,
             @Field("password") String password);
 
     @FormUrlEncoded
-    @POST("register2.php")
+    @POST("register")
         // Sesuaikan dengan path ke login.php pada API Anda
     Call<Register> registerResponse(
             @Field("NIS") String nis,
             @Field("nama_siswa") String nama_siswa,
             @Field("password") String password,
-            @Field("tingkatan") String tingkatan,
-            @Field("kelas") String kelas,
             @Field("jenis_kelamin") String jenis_kelamin,
             @Field("notelp") String notelp,
+            @Field("id_data_kelas") String id_data_kelas,
             @Field("gambar") String gambar);
+
+    @Multipart
+    @POST("profile") // Ganti dengan nama file PHP Anda
+    Call<Profile> profileResponse(
+            @Part("NIS") RequestBody NIS,
+            @Part("id_data_kelas") RequestBody id_data_kelas,
+            @Part("jenis_kelamin") RequestBody jenis_kelamin,
+            @Part("notelp") RequestBody notelp,
+            @Part MultipartBody.Part gambar);
+
 
 }

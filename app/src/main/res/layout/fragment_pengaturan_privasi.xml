@@ -24,7 +24,7 @@
             app:cardCornerRadius="100dp">
 
             <ImageView
-                android:id="@+id/img_profile"
+                android:id="@+id/img_profileupdate"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:scaleType="centerCrop"
@@ -43,6 +43,7 @@
         </androidx.cardview.widget.CardView>
 
         <TextView
+            android:id="@+id/txt_namaProfile"
             android:layout_width="match_parent"
             android:layout_marginTop="15dp"
             android:layout_height="wrap_content"
@@ -69,9 +70,17 @@
         android:layout_marginTop="50dp"
         android:layout_marginRight="50dp"
         android:orientation="vertical">
+        <TextView
+            android:id="@+id/textViewkata"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/mulish"
+            android:text="NIS"
+            android:textColor="@color/textColor"
+            android:textSize="17sp" />
 
         <EditText
-            android:id="@+id/editTextTextPassword35"
+            android:id="@+id/edt_nisProfile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -91,18 +100,18 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
             android:fontFamily="@font/mulish"
-            android:text="Tingkatan"
+            android:text="Kelas"
             android:textColor="@color/textColor"
             android:textSize="17sp" />
 
         <Spinner
-            android:id="@+id/dropdown4"
+            android:id="@+id/dropdownKelasProfile"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginTop="5dp"
             android:autofillHints="Masukkan Tingkatan anda"
             android:background="@drawable/style_spinner"
-            android:entries="@array/Tingkatan"></Spinner>
+            android:entries="@array/Tingkatan"/>
 
         <TextView
             android:id="@+id/textView51"
@@ -110,18 +119,18 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
             android:fontFamily="@font/mulish"
-            android:text="Kelas"
+            android:text="Jenis kelamin"
             android:textColor="@color/textColor"
             android:textSize="17sp" />
 
         <Spinner
-            android:id="@+id/dropdown3"
+            android:id="@+id/dropdownJenisProfile"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginTop="5dp"
             android:autofillHints="Masukkan Kelas anda"
             android:background="@drawable/style_spinner"
-            android:entries="@array/Kelas"></Spinner>
+            android:entries="@array/kelas"/>
 
         <TextView
             android:id="@+id/textView6"
@@ -134,7 +143,7 @@
             android:textSize="17sp" />
 
         <EditText
-            android:id="@+id/editText56"
+            android:id="@+id/edt_notelpProfile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -142,12 +151,12 @@
             android:fontFamily="@font/mulish"
             android:hint="Masukan No Telephone anda"
             android:inputType="number"
-            android:maxLength="4"
+            android:maxLength="12"
             android:minHeight="48dp"
             android:textColor="@color/black"
             android:textColorHint="@color/hinText" />
         <Button
-            android:id="@+id/btn_daftartoLogin"
+            android:id="@+id/btn_simpanProfile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="43dp"
