@@ -169,11 +169,15 @@
                     android:textColor="@color/teal_200"
                     android:textSize="18sp" />
 
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_tindakanHome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txt_tindakan"
+                    android:layout_marginTop="10dp" />
+
             </RelativeLayout>
 
-            <include layout="@layout/kotak_tindakan" />
-
-            <include layout="@layout/kotak_tindakan" />
         </LinearLayout>
 
         <LinearLayout
@@ -194,7 +198,7 @@
                 android:textSize="20sp" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/view1"
+                android:id="@+id/rv_HistoryHome"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

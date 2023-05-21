@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -11,76 +10,107 @@
         android:layout_height="wrap_content">
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/listImage"
+            android:id="@+id/listImageDaftarBuku"
             android:layout_width="140dp"
             android:layout_height="210dp"
-            android:scaleType="centerCrop"
+            android:scaleType="fitCenter"
             android:src="@drawable/buku2" />
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/placeholder"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@id/listImage"
-            android:layout_alignTop="@id/listImage"
-            android:layout_marginStart="152dp"
-            android:layout_marginTop="77dp"
-            android:src="@drawable/placeholder" />
 
         <TextView
-            android:id="@+id/listJudul"
+            android:id="@+id/listJudulDaftarBuku"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="20dp"
-            android:layout_toEndOf="@id/listImage"
+            android:layout_toEndOf="@id/listImageDaftarBuku"
             android:fontFamily="@font/mulish"
             android:text="Matematika Kelas VII"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/placeholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@id/listImageDaftarBuku"
+            android:layout_alignTop="@id/listJudulDaftarBuku"
+            android:layout_marginStart="152dp"
+            android:layout_marginTop="56dp"
+            android:src="@drawable/placeholder" />
+
         <TextView
-            android:id="@+id/txt_semester"
+            android:id="@+id/txt_semesterDaftarBuku"
             android:layout_width="84dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/listJudul"
-            android:layout_alignStart="@id/listJudul"
+            android:layout_below="@id/listJudulDaftarBuku"
+            android:layout_alignStart="@id/listJudulDaftarBuku"
             android:layout_marginStart="27dp"
             android:layout_marginTop="31dp"
             android:fontFamily="@font/mulish"
             android:gravity="center_vertical"
             android:text="Semester 1"
             android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
 
-        <TextView
-            android:id="@+id/txt_semester2"
-            android:layout_width="wrap_content"
-            android:layout_height="31dp"
-            android:layout_below="@id/listJudul"
-            android:layout_alignStart="@id/listJudul"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="62dp"
-            android:fontFamily="@font/mulish"
-            android:gravity="center_vertical"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam,purus sit"
-            android:textColor="@color/black"
-            android:textSize="10sp" />
-
-        <TextView
-            android:id="@+id/status"
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/placeholder2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/listJudul"
-            android:layout_alignStart="@id/txt_semester"
-            android:layout_marginStart="-26dp"
-            android:layout_marginTop="107dp"
-            android:layout_toEndOf="@id/txt_semester"
-            android:background="@drawable/rounded"
-            android:paddingLeft="5dp"
-            android:paddingTop="2dp"
-            android:text="Sedang Dipinjam"
+            android:layout_alignStart="@id/listImageDaftarBuku"
+            android:layout_marginStart="152dp"
+            android:layout_below="@+id/placeholder"
+            android:layout_marginTop="33dp"
+            android:src="@drawable/placeholder" />
+
+        <TextView
+            android:id="@+id/penerbitDaftarbuku"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_semesterDaftarBuku"
+            android:layout_alignStart="@id/txt_semesterDaftarBuku"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/mulish"
+            android:gravity="center_vertical"
+            android:text="Penerbit : 2019"
             android:textColor="@color/black"
-            android:textSize="10sp" />
+            android:textSize="12sp" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/placeholder3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@id/listImageDaftarBuku"
+            android:layout_alignTop="@id/placeholder2"
+            android:layout_marginStart="152dp"
+            android:layout_marginTop="41dp"
+            android:src="@drawable/placeholder" />
+
+        <TextView
+            android:id="@+id/tahunDaftarbuku"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/penerbitDaftarbuku"
+            android:layout_alignStart="@id/txt_semesterDaftarBuku"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/mulish"
+            android:gravity="center_vertical"
+            android:text="Tahun Terbit : 2019"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+
+        <TextView
+            android:id="@+id/jumlahDaftarBuku"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tahunDaftarbuku"
+            android:layout_alignStart="@id/txt_semesterDaftarBuku"
+            android:layout_marginTop="15dp"
+            android:layout_toEndOf="@id/txt_semesterDaftarBuku"
+            android:background="@drawable/rounded"
+            android:text="Tersedia : 20"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
     </RelativeLayout>
 </LinearLayout>

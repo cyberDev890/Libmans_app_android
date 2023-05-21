@@ -19,7 +19,7 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31">
         <activity
-            android:name=".controller.detail_buku"
+            android:name=".ui.detail_buku"
             android:exported="false">
 
         </activity>

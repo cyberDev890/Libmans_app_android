@@ -21,7 +21,12 @@ import com.libman.model.history.History;
 import com.libman.model.history.HistoryData;
 import com.libman.sesion.SesionManager;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,8 +39,6 @@ public class history_peminjaman extends Fragment {
     private String _Nis;
     private HistoryAdapterList historyAdapterList;
 
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +47,6 @@ public class history_peminjaman extends Fragment {
         }
     }
 
-    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -62,7 +64,34 @@ public class history_peminjaman extends Fragment {
         return view;
     }
 
-    private void fetchHistoryData(String nis ) {
+    private void checkReturnDate(String returnDate, String dueDate) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        try {
+            Date returnDateObj = dateFormat.parse(returnDate);
+            Date dueDateObj = dateFormat.parse(dueDate);
+
+            if (returnDateObj != null && dueDateObj != null) {
+                if (returnDateObj.after(dueDateObj)) {
+                    long diff = returnDateObj.getTime() - dueDateObj.getTime();
+                    long diffDays = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+
+                    if (diffDays > 7) {
+                        // Implement your action for exceeding return date by more than 7 days
+                        Toast.makeText(getActivity(), "Anda melewati batas pengembalian buku. Anda akan dikenai denda.", Toast.LENGTH_SHORT).show();
+                        // Add code to apply appropriate action (e.g., charging a fine, sending notification, etc.)
+                    } else {
+                        // Implement your action for exceeding return date within 7 days
+                        long remainingDays = 7 - diffDays;
+                        Toast.makeText(getActivity(), "Anda belum mengembalikan buku. Silakan mengembalikan dalam waktu " + remainingDays + " hari.", Toast.LENGTH_SHORT).show();                        // Add code to apply appropriate action (e.g., sending a reminder, etc.)
+                    }
+                }
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void fetchHistoryData(String nis) {
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
         Call<History> call = apiInterface.history(nis);
 
@@ -73,6 +102,12 @@ public class history_peminjaman extends Fragment {
                     History history = response.body();
                     if (history != null && history.isSuccess()) {
                         List<HistoryData> historyDataList = history.getData();
+
+                        // Check return date for each history data
+                        for (HistoryData historyData : historyDataList) {
+                            checkReturnDate(historyData.getTanggalPeminjaman(), historyData.getTanggalPengembalian());
+                        }
+
                         historyAdapterList.setData(historyDataList);
                         historyAdapterList.notifyDataSetChanged();
                     } else {

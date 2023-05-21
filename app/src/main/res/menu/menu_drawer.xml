@@ -18,6 +18,10 @@
             android:icon="@drawable/tindakan"
             android:title="Memerlukan tindakan" />
         <item
+            android:id="@+id/ic_daftarbuku"
+            android:icon="@drawable/ic_datasaver"
+            android:title="Daftar buku" />
+        <item
             android:id="@+id/ic_favorite"
             android:icon="@drawable/daftar_favorite"
             android:title="Daftar Favorite" />

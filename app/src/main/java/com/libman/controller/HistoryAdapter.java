@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.libman.R;
 import com.libman.model.history.HistoryData;
+import com.libman.ui.detail_buku;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +41,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
 
         HistoryData historyData = historyDataList.get(position);
         holder.txtJudul.setText(historyData.getJudulBuku());
-        holder.txtSemester.setText("Semester " + historyData.getSemester());
+        holder.txtSemester.setText("Semester: " + historyData.getSemester());
         holder.txtTgl.setText(historyData.getTanggalPengembalian());
 
         // Load image using Glide or any other image loading library

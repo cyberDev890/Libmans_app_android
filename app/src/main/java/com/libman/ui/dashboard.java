@@ -55,7 +55,7 @@ public class dashboard extends AppCompatActivity {
 
         ImageView imgProfile = headerView.findViewById(R.id.img_profile);
 // Dapatkan URL gambar profil dari sesionManager
-        String baseUrl = "https://0ece-103-176-143-44.ngrok-free.app/api/uploads/";
+        String baseUrl = "https://0ece-103-176-143-44.ngrok-free.app/uploads/";
         String gambarUrl = sesionManager.getUserDetail().get(SesionManager.Gambar);
         String fullUrl = baseUrl + gambarUrl;
 
@@ -99,6 +99,11 @@ public class dashboard extends AppCompatActivity {
                     case R.id.ic_tindakan:
                         fragmentR(new memerlukan_tindakan());
                         toolbar1.setText("Memerlukan Tindakan");
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case R.id.ic_daftarbuku:
+                        fragmentR(new daftar_buku());
+                        toolbar1.setText("Daftar Buku");
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     case R.id.ic_favorite:

@@ -20,36 +20,35 @@
             android:gravity="center_vertical">
 
             <TextView
-                android:id="@+id/txt_tindakan"
-                android:layout_width="wrap_content"
+                android:id="@+id/txt_judultindakan"
+                android:layout_width="240dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:maxLines="2"
+                android:paddingLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
                 android:fontFamily="@font/mulish"
-                android:text="Bahasa Inggris Kelas IX"
+                android:text="Ilmu Pengetahuan Sosial eeeeeKelas 7"
                 android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <ImageView
-                android:id="@+id/img_tindakan"
+                android:id="@+id/placeholder_tindakan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="45dp"
-                android:layout_toRightOf="@id/txt_tindakan"
+                android:layout_marginHorizontal="10dp"
                 android:background="@drawable/placeholder" />
 
             <TextView
-                android:id="@+id/semester"
+                android:id="@+id/semesterTindakan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:layout_marginLeft="100dp"
+                android:textAlignment="textEnd"
+                android:maxLines="1"
                 android:fontFamily="@font/mulish"
                 android:text="Semester I"
                 android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textSize="14sp" />
 
         </LinearLayout>
 

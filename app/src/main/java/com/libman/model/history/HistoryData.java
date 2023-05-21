@@ -16,6 +16,8 @@ public class HistoryData {
     private String jumlah;
     @SerializedName("judul_buku")
     private String judulBuku;
+    @SerializedName("tanggal_peminjaman")
+    private String tanggal_peminjaman;
 
     @SerializedName("tanggal_pengembalian")
     private String tanggalPengembalian;
@@ -27,7 +29,8 @@ public class HistoryData {
     public String getId_buku() {
         return id_buku;
     }
-  public void setPenerbit(String penerbit) {
+
+    public void setPenerbit(String penerbit) {
         this.penerbit = penerbit;
     }
 
@@ -35,7 +38,7 @@ public class HistoryData {
         return penerbit;
     }
 
-	public void setJumlah(String jumlah) {
+    public void setJumlah(String jumlah) {
         this.jumlah = jumlah;
     }
 
@@ -73,5 +76,11 @@ public class HistoryData {
 
     public String getTanggalPengembalian() {
         return tanggalPengembalian;
+    }   public void setTanggalPeminjaman(String tanggal_peminjaman) {
+        this.tanggal_peminjaman = tanggal_peminjaman;
+    }
+
+    public String getTanggalPeminjaman() {
+        return tanggal_peminjaman;
     }
 }

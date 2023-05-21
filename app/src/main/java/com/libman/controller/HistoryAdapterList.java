@@ -43,7 +43,7 @@ public class HistoryAdapterList extends RecyclerView.Adapter<HistoryAdapterList.
 
         HistoryData historyData = historyDataListdaftar.get(position);
         holder.txtJudul.setText(historyData.getJudulBuku());
-        holder.txtSemester.setText("Semester " + historyData.getSemester());
+        holder.txtSemester.setText("Semester: " + historyData.getSemester());
         holder.txtTgl.setText("Dikembalikan pada tanggal: "+historyData.getTanggalPengembalian());
 
         // Load image using Glide or any other image loading library
