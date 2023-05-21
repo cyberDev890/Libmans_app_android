@@ -4,7 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="150dp"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
+    android:paddingStart="8dp"
+    android:paddingEnd="8dp"
     android:background="@drawable/bg_card">
 
 
@@ -12,7 +15,7 @@
         android:id="@+id/img_buku"
         android:layout_width="wrap_content"
         android:layout_height="160dp"
-        android:scaleType="centerCrop"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

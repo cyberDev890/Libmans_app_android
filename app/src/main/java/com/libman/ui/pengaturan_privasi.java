@@ -3,11 +3,20 @@ package com.libman.ui;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.ContextWrapper;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.net.Uri;
+import android.provider.MediaStore;
+
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,6 +25,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +45,10 @@ import com.libman.api.ApiInterface;
 import com.libman.model.profile.Profile;
 import com.libman.sesion.SesionManager;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -48,6 +61,8 @@ import retrofit2.Response;
 
 public class pengaturan_privasi extends Fragment {
     private static final int PICK_IMAGE_REQUEST = 1;
+    private static final int CAMERA_REQUEST_CODE = 3;
+    private static final int GALLERY_REQUEST_CODE = 4;
 
     private ImageView imageView;
     private FloatingActionButton pickImageButton;
@@ -59,9 +74,7 @@ public class pengaturan_privasi extends Fragment {
     private ApiInterface apiInterface;
     private Uri imageUri;
 
-    public pengaturan_privasi() {
-        // Required empty public constructor
-    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -92,14 +105,15 @@ public class pengaturan_privasi extends Fragment {
         edt_noTelp.setText(telp);
         String nama = sesionManager.getUserDetail().get(SesionManager.Nama_siswa);
         txt_Nama.setText(nama);
+        apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
         // Mengambil daftar tingkatan yang ada
-        ArrayList<String> daftarTingkatan = getDaftarTingkatan();
+        ArrayList<String> daftarKelas = getDaftarTingkatan();
         // Membuat adapter untuk Spinner dengan daftar tingkatan
-        ArrayAdapter<String> tingkatanAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, daftarTingkatan);
-        tingkatanAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<String> kelasAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, daftarKelas);
+        kelasAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Mengatur adapter ke Spinner
-        spinner_jk.setAdapter(tingkatanAdapter);
+        spinner_kelas.setAdapter(kelasAdapter);
 
         // Mengambil daftar tingkatan yang ada
         ArrayList<String> JenisKelamin = getJk();
@@ -107,26 +121,91 @@ public class pengaturan_privasi extends Fragment {
         ArrayAdapter<String> getJkAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, JenisKelamin);
         getJkAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Mengatur adapter ke Spinner
-        spinner_kelas.setAdapter(getJkAdapter);
+        spinner_jk.setAdapter(getJkAdapter);
 
         pickImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE)
-                        == PackageManager.PERMISSION_GRANTED) {
-                    pickImage();
-                } else {
-                    ActivityCompat.requestPermissions(getActivity(),
-                            new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                            PICK_IMAGE_REQUEST);
-                }
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Select Image Source");
+                builder.setItems(new CharSequence[]{"Camera", "Gallery"}, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        switch (i) {
+                            case 0:
+                                // Memilih gambar dari kamera
+                                if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                                    pickImageFromCamera();
+                                } else {
+                                    // Jika izin belum diberikan, minta izin
+                                    ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, PICK_IMAGE_REQUEST);
+                                }
+                                break;
+                            case 1:
+                                // Memilih gambar dari galeri
+                                if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                                    pickImageFromGallery();
+                                } else {
+                                    // Jika izin belum diberikan, minta izin
+                                    ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, PICK_IMAGE_REQUEST);
+                                }
+                                break;
+                        }
+                    }
+                });
+                builder.show(); // Menampilkan AlertDialog
             }
         });
+
+// Method untuk mengambil gambar dari kamera
+
 
         btn_simpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                simpanProfile();
+                String nis = edt_NIS.getText().toString().trim();
+                String noTelp = edt_noTelp.getText().toString().trim();
+                String tingkatan = spinner_kelas.getSelectedItem().toString().trim();
+                String jk = spinner_jk.getSelectedItem().toString().trim();
+                String nama = txt_Nama.getText().toString().trim();
+                Bitmap imageBitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
+
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                byte[] imageBytes = baos.toByteArray();
+                // Membuat objek RequestBody untuk mengirim data-data lain
+                RequestBody nisBody = RequestBody.create(MediaType.parse("text/plain"), nis);
+                RequestBody noTelpBody = RequestBody.create(MediaType.parse("text/plain"), noTelp);
+                RequestBody tingkatanBody = RequestBody.create(MediaType.parse("text/plain"), tingkatan);
+                RequestBody jkBody = RequestBody.create(MediaType.parse("text/plain"), jk);
+                RequestBody namaBody = RequestBody.create(MediaType.parse("text/plain"), nama);
+                RequestBody imageBody = RequestBody.create(MediaType.parse("image/*"), imageBytes);
+
+                MultipartBody.Part imagePart = MultipartBody.Part.createFormData("image", "image.jpg", imageBody);
+                Log.d("POTO", jkBody.toString());
+                // Mengirim request ke server menggunakan Retrofit
+
+                Call<Profile> call = apiInterface.profileResponse(nisBody, tingkatanBody, jkBody,noTelpBody,  imagePart);
+                call.enqueue(new Callback<Profile>() {
+                    @Override
+                    public void onResponse(Call<Profile> call, Response<Profile> response) {
+                        if (response.isSuccessful() && response.body() != null) {
+
+                            // Tanggapan sukses dari server
+                            Profile profile = response.body();
+                            Toast.makeText(getActivity(), "Profil berhasil disimpan", Toast.LENGTH_SHORT).show();
+                        } else {
+                            // Tanggapan gagal dari server
+                            Toast.makeText(getActivity(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Profile> call, Throwable t) {
+                        // Kegagalan dalam melakukan request
+                        Toast.makeText(getActivity(), "Gagal menyimpan profil: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
 
@@ -156,9 +235,10 @@ public class pengaturan_privasi extends Fragment {
         // ...
         return daftarTingkatan;
     }
+
     private ArrayList<String> getJk() {
         // Mendapatkan daftar tingkatan dari sumber data Anda (misalnya, API atau database)
-        ArrayList<String> daftarJk= new ArrayList<>();
+        ArrayList<String> daftarJk = new ArrayList<>();
         daftarJk.add("Laki-Laki");
         daftarJk.add("Perempuan");
 
@@ -166,112 +246,66 @@ public class pengaturan_privasi extends Fragment {
         return daftarJk;
     }
 
-    private void pickImage() {
-        ImagePicker.with(pengaturan_privasi.this)
-                .crop()
-                .compress(1024)
-                .maxResultSize(1080, 1080)
-                .start();
+
+    private void pickImageFromCamera() {
+        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(cameraIntent, CAMERA_REQUEST_CODE);
+    }
+
+    // Method untuk mengambil gambar dari galeri
+    private void pickImageFromGallery() {
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(galleryIntent, GALLERY_REQUEST_CODE);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        if (resultCode == Activity.RESULT_OK && requestCode == ImagePicker.REQUEST_CODE) {
-            // Mengambil URI gambar yang dipilih
-            imageUri = data.getData();
-            // Menampilkan gambar ke ImageView
-            imageView.setImageURI(imageUri);
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == CAMERA_REQUEST_CODE && data != null) {
+                // Memilih gambar dari kamera
+                Bitmap photo = (Bitmap) data.getExtras().get("data");
+                imageView.setImageBitmap(photo);
+                // Mengirim data gambar ke API (lakukan implementasi sendiri)
+                // sendImageToApi(photo);
+            } else if (requestCode == GALLERY_REQUEST_CODE && data != null) {
+                // Memilih gambar dari galeri
+                Uri selectedImage = data.getData();
+                try {
+                    Bitmap photo = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), selectedImage);
+                    imageView.setImageBitmap(photo);
+                    // Mengirim data gambar ke API (lakukan implementasi sendiri)
+                    // sendImageToApi(photo);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
+
+
+
+
+
+
+
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == PICK_IMAGE_REQUEST) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                pickImage();
+                // Izin akses penyimpanan diberikan, lanjutkan untuk memilih gambar
+                pickImageFromCamera(); // Ganti dengan metode yang sesuai (pickImageFromGallery() atau pickImageFromCamera())
             } else {
                 Toast.makeText(getActivity(), "Izin akses penyimpanan ditolak", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
-    private void simpanProfile() {
-        if (imageUri != null) {
-            // Mengambil path file gambar dari URI
-            String imagePath = getRealPathFromURI(imageUri);
-            // Membuat objek File dari path gambar
-            File imageFile = new File(imagePath);
 
-            // Mengecek apakah file gambar ada dan valid
-            if (imageFile.exists() && imageFile.isFile()) {
-                // Membuat objek RequestBody untuk mengirim file gambar
-                RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), imageFile);
-                MultipartBody.Part imagePart = MultipartBody.Part.createFormData("image", imageFile.getName(), requestFile);
 
-                // Mengambil data-data lain yang akan disimpan dalam profile
-                String nis = edt_NIS.getText().toString().trim();
-                String noTelp = edt_noTelp.getText().toString().trim();
-                String tingkatan = spinner_jk.getSelectedItem().toString().trim();
-                String kelas = spinner_kelas.getSelectedItem().toString().trim();
 
-                // Membuat objek RequestBody untuk mengirim data-data lain
-                RequestBody nisBody = RequestBody.create(MediaType.parse("text/plain"), nis);
-                RequestBody noTelpBody = RequestBody.create(MediaType.parse("text/plain"), noTelp);
-                RequestBody tingkatanBody = RequestBody.create(MediaType.parse("text/plain"), tingkatan);
-                RequestBody kelasBody = RequestBody.create(MediaType.parse("text/plain"), kelas);
 
-                // Mengirim request ke server menggunakan Retrofit
-                apiInterface = ApiClient.getClient().create(ApiInterface.class);
-                Call<Profile> call = apiInterface.profileResponse(nisBody, noTelpBody, tingkatanBody, kelasBody, imagePart);
-                call.enqueue(new Callback<Profile>() {
-                    @Override
-                    public void onResponse(Call<Profile> call, Response<Profile> response) {
-                        if (response.isSuccessful() && response.body() != null) {
-                            // Tanggapan sukses dari server
-                            Profile profile = response.body();
-                            Toast.makeText(getActivity(), "Profil berhasil disimpan", Toast.LENGTH_SHORT).show();
-                        } else {
-                            // Tanggapan gagal dari server
-                            Toast.makeText(getActivity(), "Gagal mengunggah profil", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<Profile> call, Throwable t) {
-                        // Kegagalan dalam melakukan request
-                        Toast.makeText(getActivity(), "Gagal mengunggah profil: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-            } else {
-                Toast.makeText(getActivity(), "File gambar tidak valid", Toast.LENGTH_SHORT).show();
-            }
-        } else {
-            Toast.makeText(getActivity(), "Pilih gambar terlebih dahulu", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private String getRealPathFromURI(Uri uri) {
-        String filePath = null;
-        String[] projection = {MediaStore.Images.Media.DATA};
-        Cursor cursor = null;
-
-        try {
-            cursor = getActivity().getContentResolver().query(uri, projection, null, null, null);
-            if (cursor != null && cursor.moveToFirst()) {
-                int columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-                filePath = cursor.getString(columnIndex);
-            }
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
-        }
-
-        return filePath;
-    }
 
 }

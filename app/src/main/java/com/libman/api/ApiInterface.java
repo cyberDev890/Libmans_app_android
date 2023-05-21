@@ -1,5 +1,6 @@
 package com.libman.api;
 
+import com.libman.model.history.History;
 import com.libman.model.login.Login;
 import com.libman.model.profile.Profile;
 import com.libman.model.register.Register;
@@ -34,13 +35,18 @@ public interface ApiInterface {
             @Field("gambar") String gambar);
 
     @Multipart
-    @POST("profile") // Ganti dengan nama file PHP Anda
+    @POST("profile") // Ganti dengan endpoint PHP Anda
     Call<Profile> profileResponse(
             @Part("NIS") RequestBody NIS,
-            @Part("id_data_kelas") RequestBody id_data_kelas,
-            @Part("jenis_kelamin") RequestBody jenis_kelamin,
-            @Part("notelp") RequestBody notelp,
-            @Part MultipartBody.Part gambar);
+            @Part("id_data_kelas") RequestBody idDataKelas,
+            @Part("jenis_kelamin") RequestBody jenisKelamin,
+                @Part("notelp") RequestBody noTelp,
+                @Part MultipartBody.Part gambar
+        );
 
+    @FormUrlEncoded
+    @POST("history")
+    Call<History> history(
+            @Field("NIS") String nis);
 
 }

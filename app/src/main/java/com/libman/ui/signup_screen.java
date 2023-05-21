@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +18,8 @@ import com.libman.model.register.Register;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,7 +47,16 @@ public class signup_screen extends AppCompatActivity {
         spinner_tingkatan = findViewById(R.id.dropdownJenisProfile);
         spinner_kelas = findViewById(R.id.dropdownKelassignIn);
         spinner_jk = findViewById(R.id.dropdownJKsignIn);
-        edt_gambar.setText("uploads/default.png");
+        // Mengambil daftar tingkatan yang ada
+        ArrayList<String> kelas = getKelas();
+        // Membuat adapter untuk Spinner dengan daftar tingkatan
+        ArrayAdapter<String> getKelasAdapter = new ArrayAdapter<>(signup_screen.this, android.R.layout.simple_spinner_item, kelas);
+        getKelasAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Mengatur adapter ke Spinner
+        spinner_kelas.setAdapter(getKelasAdapter);
+
+
+
         btn_signUptoSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,6 +93,29 @@ public class signup_screen extends AppCompatActivity {
         });
     }
 
+    private ArrayList<String> getKelas() {
+        // Mendapatkan daftar tingkatan dari sumber data Anda (misalnya, API atau database)
+        ArrayList<String> daftarKelas = new ArrayList<>();
+        daftarKelas.add("1");
+        daftarKelas.add("2");
+        daftarKelas.add("3");
+        daftarKelas.add("4");
+        daftarKelas.add("5");
+        daftarKelas.add("6");
+        daftarKelas.add("7");
+        daftarKelas.add("8");
+        daftarKelas.add("9");
+        daftarKelas.add("10");
+        daftarKelas.add("11");
+        daftarKelas.add("12");
+        daftarKelas.add("13");
+        daftarKelas.add("14");
+        daftarKelas.add("15");
+        daftarKelas.add("16");
+        daftarKelas.add("17");
+        // ...
+        return daftarKelas;
+    }
     private void register(String NIS, String nama, String password,String Jk, String noTelp, String gambar ,String idDatakelas) {
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
         Call<Register> registerCall = apiInterface.registerResponse(NIS,nama,password,Jk,noTelp,gambar,idDatakelas);

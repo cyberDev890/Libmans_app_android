@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="8dp"
+    android:padding="10dp"
     tools:context=".ui.signup_screen">
 
     <ScrollView
@@ -13,23 +12,23 @@
         android:layout_height="match_parent"
         android:layout_gravity="center">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
+            android:layout_weight="1"
             android:layout_marginLeft="50dp"
             android:layout_marginTop="50dp"
-            android:layout_marginRight="50dp"
-            android:orientation="vertical">
-
-
+            android:layout_marginBottom="30dp"
+            android:layout_marginRight="50dp">
 
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
+                android:layout_marginBottom="30dp"
                 android:fontFamily="@font/mulish"
                 android:text="Buat akun"
                 android:textColor="@color/textColor"
@@ -40,24 +39,27 @@
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_below="@id/textView3"
+                android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/mulish"
                 android:text="Masukan Nama, NIS, dan Password \n sesuai dengan registerData diri anda "
                 android:textAlignment="center"
                 android:textColor="@color/hinText"
                 android:textSize="14sp" />
+
             <EditText
                 android:id="@+id/edt_gambar"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:textSize="1sp"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:textSize="1sp" />
 
             <TextView
                 android:id="@+id/textView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/textView2"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/mulish"
                 android:text="Nama"
@@ -68,6 +70,7 @@
                 android:id="@+id/edt_namaSingIn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/textView1"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/rounded_textfield"
                 android:ems="10"
@@ -78,36 +81,46 @@
                 android:textColor="@color/black"
                 android:textColorHint="@color/hinText" />
 
-            <TextView
-                android:id="@+id/textView9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
-                android:fontFamily="@font/mulish"
-                android:text="NIS"
-                android:textColor="@color/textColor"
-                android:textSize="17sp" />
-
-            <EditText
-                android:id="@+id/edt_nisSingIn"
+            <!-- Tetapkan ID tambahan untuk RelativeLayout ini -->
+            <RelativeLayout
+                android:id="@+id/relativeLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/rounded_textfield"
-                android:fontFamily="@font/mulish"
-                android:hint="Masukan NIS"
-                android:inputType="number"
-                android:maxLength="4"
-                android:minHeight="48dp"
-                android:textColor="@color/black"
-                android:textColorHint="@color/hinText" />
+                android:layout_below="@id/edt_namaSingIn"
+                android:layout_marginTop="10dp">
 
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:fontFamily="@font/mulish"
+                    android:text="NIS"
+                    android:textColor="@color/textColor"
+                    android:textSize="17sp" />
 
-       z
+                <EditText
+                    android:id="@+id/edt_nisSingIn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView9"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/rounded_textfield"
+                    android:fontFamily="@font/mulish"
+                    android:hint="Masukan NIS"
+                    android:inputType="number"
+                    android:maxLength="4"
+                    android:minHeight="48dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/hinText" />
+
+            </RelativeLayout>
+
             <TextView
                 android:id="@+id/textView51"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/relativeLayout"
                 android:layout_marginTop="18dp"
                 android:fontFamily="@font/mulish"
                 android:text="Kelas"
@@ -118,6 +131,7 @@
                 android:id="@+id/dropdownKelassignIn"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
+                android:layout_below="@id/textView51"
                 android:layout_marginTop="5dp"
                 android:autofillHints="Masukkan Kelas anda"
                 android:background="@drawable/style_spinner"
@@ -127,6 +141,7 @@
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/dropdownKelassignIn"
                 android:layout_marginTop="18dp"
                 android:fontFamily="@font/mulish"
                 android:text="No. Telephone"
@@ -137,6 +152,7 @@
                 android:id="@+id/edt_telpSingIn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/textView6"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/rounded_textfield"
                 android:fontFamily="@font/mulish"
@@ -151,6 +167,7 @@
                 android:id="@+id/textView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/edt_telpSingIn"
                 android:layout_marginTop="18dp"
                 android:fontFamily="@font/mulish"
                 android:text="Jenis kelamin"
@@ -161,6 +178,7 @@
                 android:id="@+id/dropdownJKsignIn"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
+                android:layout_below="@id/textView10"
                 android:layout_marginTop="5dp"
                 android:autofillHints="Masukkan jenis kelamin anda"
                 android:background="@drawable/style_spinner"
@@ -170,17 +188,18 @@
                 android:id="@+id/textView7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/dropdownJKsignIn"
                 android:layout_marginTop="18dp"
                 android:fontFamily="@font/mulish"
                 android:text="Password"
                 android:textColor="@color/textColor"
                 android:textSize="17sp" />
 
-
             <EditText
                 android:id="@+id/edt_passwordSingin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/textView7"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/rounded_textfield"
                 android:ems="10"
@@ -195,6 +214,7 @@
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/edt_passwordSingin"
                 android:layout_marginTop="18dp"
                 android:fontFamily="@font/mulish"
                 android:text="Konfirmasi Password"
@@ -205,7 +225,9 @@
                 android:id="@+id/edtKonfirmasiPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/textView"
                 android:layout_marginTop="5dp"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/rounded_textfield"
                 android:ems="10"
                 android:fontFamily="@font/mulish"
@@ -215,24 +237,19 @@
                 android:textColor="@color/black"
                 android:textColorHint="@color/hinText" />
 
-
-           />
             <Button
                 android:id="@+id/btn_daftartoLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="43dp"
+                android:layout_below="@id/edtKonfirmasiPassword"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/rounded_button"
                 android:fontFamily="@font/mulish_semibold"
                 android:text="Daftar"
                 android:textColor="@color/white"
-                android:background="@drawable/rounded_button"
                 android:textSize="17sp" />
-
-
-        </LinearLayout>
-
+        </RelativeLayout>
 
     </ScrollView>
+</RelativeLayout>
 
-
-</LinearLayout>

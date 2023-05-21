@@ -51,9 +51,11 @@ public class dashboard extends AppCompatActivity {
         txt_name = headerView.findViewById(R.id.txt_nama_profile);
         String nama = sesionManager.getUserDetail().get(SesionManager.Nama_siswa);
         txt_name.setText(nama);
+
+
         ImageView imgProfile = headerView.findViewById(R.id.img_profile);
 // Dapatkan URL gambar profil dari sesionManager
-        String baseUrl = "http://192.168.1.12/api_libman/uploads/";
+        String baseUrl = "https://0ece-103-176-143-44.ngrok-free.app/api/uploads/";
         String gambarUrl = sesionManager.getUserDetail().get(SesionManager.Gambar);
         String fullUrl = baseUrl + gambarUrl;
 
