@@ -47,7 +47,7 @@ public class tindakanAdapter extends RecyclerView.Adapter<tindakanAdapter.ViewHo
         holder.txtTanggal.setText("Status: kembalikan sebelum " + tindakanData.getTanggalPengembalian());
 
         // Load image using Glide or any other image loading library
-        String imageUrl = "https://0ece-103-176-143-44.ngrok-free.app/uploads/" + tindakanData.getGambar();
+        String imageUrl = "https://laravel.yoganova.my.id/assets/upload/" + tindakanData.getGambar();
         Glide.with(holder.itemView.getContext())
                 .load(imageUrl)
                 .override(1500, 1500)

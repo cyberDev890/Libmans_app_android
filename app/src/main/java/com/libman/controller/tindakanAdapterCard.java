@@ -45,8 +45,8 @@ public class tindakanAdapterCard extends RecyclerView.Adapter<tindakanAdapterCar
         holder.txtSemester.setText("Semester: " + tindakanData.getSemester());
         holder.txtTanggal.setText("Status: kembalikan sebelum " + tindakanData.getTanggalPengembalian());
 
-    }
 
+    }
     @Override
     public int getItemCount() {
         return Math.min(tindakanDataList.size(), 2);

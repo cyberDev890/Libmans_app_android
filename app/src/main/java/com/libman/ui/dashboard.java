@@ -55,7 +55,7 @@ public class dashboard extends AppCompatActivity {
 
         ImageView imgProfile = headerView.findViewById(R.id.img_profile);
 // Dapatkan URL gambar profil dari sesionManager
-        String baseUrl = "https://0ece-103-176-143-44.ngrok-free.app/uploads/";
+        String baseUrl = "https://laravel.yoganova.my.id/assets/upload/";
         String gambarUrl = sesionManager.getUserDetail().get(SesionManager.Gambar);
         String fullUrl = baseUrl + gambarUrl;
 

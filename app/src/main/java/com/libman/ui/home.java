@@ -55,7 +55,7 @@ public class home extends Fragment {
         img_more = view.findViewById(R.id.ic_more);
         rvListbuku = view.findViewById(R.id.rv_HistoryHome);
         rvListbuku.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-        historyAdapter = new HistoryAdapter();
+        historyAdapter = new HistoryAdapter(getContext());
         rvListbuku.setAdapter(historyAdapter);
         //batas
         rvTindakanbuku = view.findViewById(R.id.rv_tindakanHome);

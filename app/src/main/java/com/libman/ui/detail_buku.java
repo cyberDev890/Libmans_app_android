@@ -21,7 +21,7 @@ public class detail_buku extends AppCompatActivity {
         setContentView(R.layout.activity_detail_buku);
         imgBuku = findViewById(R.id.img_bukuDetail);
         txtJudul = findViewById(R.id.Judul_bukuDetail);
-        txtJumlah = findViewById(R.id.jumlah_buku);
+        txtJumlah = findViewById(R.id.jumlah_bukuDetail);
         txtSemester = findViewById(R.id.semester_detail);
         txtPengarang = findViewById(R.id.penerbit_detail);
 
@@ -33,9 +33,11 @@ public class detail_buku extends AppCompatActivity {
             txtJudul.setText(historyData.getJudulBuku());
             txtSemester.setText(historyData.getSemester());
             txtPengarang.setText(historyData.getPenerbit());
+            txtJumlah.setText(historyData.getJumlah());
+
 
             // Load image using Glide or any other image loading library
-            String imageUrl = "https://5c87-103-176-143-44.ngrok-free.app/api/uploads/";
+            String imageUrl = "http://libman.mra.my.id/uploads/";
             Glide.with(this)
                     .load(imageUrl)
                     .override(1500, 1500)

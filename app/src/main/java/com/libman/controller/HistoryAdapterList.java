@@ -47,7 +47,7 @@ public class HistoryAdapterList extends RecyclerView.Adapter<HistoryAdapterList.
         holder.txtTgl.setText("Dikembalikan pada tanggal: "+historyData.getTanggalPengembalian());
 
         // Load image using Glide or any other image loading library
-        String imageUrl = "https://0ece-103-176-143-44.ngrok-free.app/uploads/" + historyData.getGambar();
+        String imageUrl = "https://laravel.yoganova.my.id/assets/upload/" + historyData.getGambar();
         Glide.with(holder.itemView.getContext())
                 .load(imageUrl)
                 .override(1500, 1500)

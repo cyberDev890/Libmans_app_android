@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "749035540396",
+    "project_id": "notification-libman-apss",
+    "storage_bucket": "notification-libman-apss.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:749035540396:android:1175f774bdcbacf9d9f409",
+        "android_client_info": {
+          "package_name": "com.libman"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "749035540396-ra9cnq8tql0dr5s0p5a8k4sbv5qv9r2j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMWIwRW0gbnneZwUoiVRpFzb0VdWukyQM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "749035540396-ra9cnq8tql0dr5s0p5a8k4sbv5qv9r2j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

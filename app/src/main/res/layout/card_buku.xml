@@ -11,7 +11,7 @@
     android:background="@drawable/bg_card">
 
 
-    <ImageView
+    <ImageButton
         android:id="@+id/img_buku"
         android:layout_width="wrap_content"
         android:layout_height="160dp"

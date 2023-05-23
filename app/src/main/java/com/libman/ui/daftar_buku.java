@@ -1,9 +1,11 @@
 package com.libman.ui;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -11,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.libman.R;
 import com.libman.api.ApiClient;
 import com.libman.api.ApiInterface;
@@ -27,6 +30,7 @@ import retrofit2.Response;
 public class daftar_buku extends Fragment {
 
     private daftarBukuAdapter adapter;
+    private LottieAnimationView progressBar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,7 +47,10 @@ public class daftar_buku extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         loadDataBuku();
-
+        progressBar = view.findViewById(R.id.lottie_empty);
+        progressBar.setVisibility(View.VISIBLE);
+        progressBar.setAnimation(R.raw.loadingdots);
+        progressBar.playAnimation();
         return view;
     }
 
@@ -59,6 +66,8 @@ public class daftar_buku extends Fragment {
                         List<DaftarBukuData> dataBuku = daftarBuku.getData();
                         adapter.setData(dataBuku);
                         adapter.notifyDataSetChanged();
+                        progressBar.setVisibility(View.GONE);
+                        progressBar.cancelAnimation();
                     }
                 }
             }

@@ -45,7 +45,7 @@ public class daftarBukuAdapter extends RecyclerView.Adapter<daftarBukuAdapter.Vi
         holder.txtTahun.setText("Tahun Terbit: " + daftarbukuData.getTahunTerima());
 
         // Load image using Glide or any other image loading library
-        String imageUrl = "https://0ece-103-176-143-44.ngrok-free.app/uploads/" + daftarbukuData.getGambar();
+        String imageUrl = "https://laravel.yoganova.my.id/assets/upload/" + daftarbukuData.getGambar();
         Glide.with(holder.itemView.getContext())
                 .load(imageUrl)
                 .override(1500, 1500)
