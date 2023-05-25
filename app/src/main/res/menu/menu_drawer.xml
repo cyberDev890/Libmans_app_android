@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/ic_home"
+            android:icon="@drawable/icons_home"
+            android:title="Home" />
+        <item
+            android:id="@+id/ic_privasi"
+            android:icon="@drawable/privasi"
+            android:title="Pengaturan privasi" />
+        <item
+            android:id="@+id/ic_tindakan"
+            android:icon="@drawable/tindakan"
+            android:title="Memerlukan tindakan" />
+        <item
+            android:id="@+id/ic_daftarbuku"
+            android:icon="@drawable/ic_datasaver"
+            android:title="Daftar buku" />
+        <item
+            android:id="@+id/ic_favorite"
+            android:icon="@drawable/daftar_favorite"
+            android:title="Daftar Favorite" />
+        <item
+            android:id="@+id/ic_history"
+            android:icon="@drawable/history"
+            android:title="History peminjaman" />
+        <item
+            android:id="@+id/ic_cs"
+            android:icon="@drawable/cs"
+            android:title="Customer Service" />
+        <item
+            android:id="@+id/ic_tentang"
+            android:icon="@drawable/tentang_aplikasi"
+            android:title="Tentang Aplikasi" />
+        <item
+            android:id="@+id/ic_logout"
+            android:icon="@drawable/logout"
+            android:title="Logout" />
+    </group>
+</menu>
