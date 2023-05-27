@@ -53,36 +53,36 @@
 
                 <ImageView
                     android:id="@+id/ic_sbk"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
                     android:layout_marginRight="20dp"
                     android:src="@drawable/sbk" />
 
                 <ImageView
                     android:id="@+id/ic_olahraga"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
                     android:layout_marginRight="20dp"
                     android:src="@drawable/sbk" />
 
                 <ImageView
                     android:id="@+id/ic_ipa"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
                     android:layout_marginRight="20dp"
                     android:src="@drawable/sbk" />
 
                 <ImageView
                     android:id="@+id/ic_ips"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
                     android:layout_marginRight="20dp"
                     android:src="@drawable/sbk" />
 
                 <ImageView
                     android:id="@+id/ic_more"
-                    android:layout_width="50dp"
-                    android:layout_height="60dp"
+                    android:layout_width="48dp"
+                    android:layout_height="58dp"
                     android:layout_marginRight="20dp"
                     android:src="@drawable/more" />
 
@@ -102,25 +102,7 @@
                     android:fontFamily="@font/mulish"
                     android:text="SBK"
                     android:textColor="@color/black"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:fontFamily="@font/mulish"
-                    android:text="Olahraga"
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
-                    android:fontFamily="@font/mulish"
-                    android:text="IPA"
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -129,8 +111,25 @@
                     android:fontFamily="@font/mulish"
                     android:text="IPS"
                     android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:fontFamily="@font/mulish"
+                    android:text="Olahraga"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:fontFamily="@font/mulish"
+                    android:text="IPA"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
