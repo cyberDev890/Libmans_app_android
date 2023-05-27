@@ -5,6 +5,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
@@ -20,19 +22,13 @@
         tools:targetApi="31">
         <activity
             android:name=".ui.detail_buku"
-            android:exported="false">
-
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".ui.daftar_buku"
-            android:exported="false">
-
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".ui.memerlukan_tindakan"
-            android:exported="false">
-
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".ui.dashboard"
             android:exported="true">
@@ -44,36 +40,26 @@
         </activity>
         <activity
             android:name=".ui.welcome_screen"
-            android:exported="false">
-
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".ui.signin_screen"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize">
-
-        </activity>
+            android:windowSoftInputMode="adjustResize"></activity>
         <activity
             android:name=".ui.signup_screen"
-            android:exported="false">
-
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".ui.splash_screen"
             android:exported="false"
-            android:windowSoftInputMode="stateHidden">
-
-        </activity>
-    <activity
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity
             android:name=".ui.notification"
             android:exported="true"
-            android:windowSoftInputMode="stateHidden">
-
-    </activity>
+            android:windowSoftInputMode="stateHidden"></activity>
 
         <service
             android:name=".notification.MyFirebaseMessagingService"
-            android:exported="false">
+            android:exported="true">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>

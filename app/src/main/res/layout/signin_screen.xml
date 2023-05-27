@@ -6,9 +6,10 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:layout_marginBottom="50dp"
-    android:gravity="center"
+    android:gravity="center_vertical"
     android:orientation="vertical"
     tools:context=".ui.signin_screen">
+
 
     <TextView
         android:id="@+id/textView3"
@@ -21,14 +22,15 @@
         android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"
+
         />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="20dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/mulish"
         android:text="Masukan NIS dan Password \n untuk melanjutkan ke halaman berikutnya"
         android:textAlignment="center"
@@ -115,6 +117,7 @@
             android:id="@+id/btn_masuk"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:textColor="@color/white"
             android:background="@drawable/rounded_button"
             android:fontFamily="@font/mulish_semibold"
@@ -152,4 +155,6 @@
             android:textSize="14sp" />
 
     </LinearLayout>
+
+
 </LinearLayout>
