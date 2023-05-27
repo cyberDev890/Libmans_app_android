@@ -2,9 +2,11 @@ package com.libman.notification;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
@@ -13,68 +15,73 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.libman.R;
 import com.libman.ui.notification;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
+    private static final String CHANNEL_ID = "my_channel";
+    private static String fcmToken = "";
 
-    private static final String TAG = "MyFirebaseMsgService";
+    @Override
+    public void onNewToken(String token) {
+        super.onNewToken(token);
+
+        saveTokenToStorage(token);
+        Log.d("FCM Token", token);
+    }
+    public static String createFcmToken() {
+        String token = FirebaseMessaging.getInstance().getToken().getResult();
+        Log.d("FCM Token", token);
+        fcmToken = token;
+        return token;
+    }
+
+
+    private void saveTokenToStorage(String token) {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("FCM_TOKEN", token);
+        editor.apply();
+    }
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-
-        Log.d(TAG, "From: " + remoteMessage.getFrom());
-
-        // Check if message contains a data payload.
-        if (remoteMessage.getData().size() > 0) {
-            Log.d(TAG, "Message data payload: " + remoteMessage.getData());
-
-        }
         if (remoteMessage.getNotification() != null) {
-            Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
-            sendNotification(remoteMessage.getNotification().getBody());
+            String title = remoteMessage.getNotification().getTitle();
+            String message = remoteMessage.getNotification().getBody();
+
+            createNotificationChannel();
+            showNotification(title, message);
         }
     }
 
-
-
-    @Override
-    public void onNewToken(@NonNull String token) {
-        Log.d(TAG, "Refreshed token: " + token);
-
-    }
-
-    private void sendNotification(String messageBody) {
-        Intent intent = new Intent(this, notification.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
-                PendingIntent.FLAG_IMMUTABLE);
-
-        String channelId = "fcm_default_channel";
-        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        NotificationCompat.Builder notificationBuilder =
-                new NotificationCompat.Builder(this, channelId)
-                        .setSmallIcon(R.drawable.logo_buku)
-                        .setContentTitle("FCM Message")
-                        .setContentText(messageBody)
-                        .setAutoCancel(true)
-                        .setSound(defaultSoundUri)
-                        .setContentIntent(pendingIntent);
-
-        NotificationManager notificationManager =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-        // Since android Oreo notification channel is needed.
+    private void createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel(channelId,
-                    "Channel human readable title",
-                    NotificationManager.IMPORTANCE_DEFAULT);
+            CharSequence name = "My Channel";
+            String description = "Channel for my notifications";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            channel.setDescription(description);
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
         }
-
-        notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
     }
 
+    private void showNotification(String title, String message) {
+        Bitmap largeIcon = BitmapFactory.decodeResource(getResources(), R.drawable.logo2);
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setSmallIcon(R.drawable.logo2)
+                .setLargeIcon(largeIcon)
+                .setContentTitle(title)
+                .setContentText(message)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setAutoCancel(true);
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        notificationManager.notify(0, builder.build());
+    }
 }

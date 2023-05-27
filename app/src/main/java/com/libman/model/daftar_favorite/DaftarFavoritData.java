@@ -16,8 +16,10 @@ public class DaftarFavoritData {
 	@SerializedName("tahun_terima")
 	private String tahunTerima;
 	@SerializedName("id_buku")
-	private String id_buku;
+	private int id_buku;
 
+	@SerializedName("jumlah")
+	private String jumlah;
 	@SerializedName("gambar")
 	private String gambar;
 
@@ -27,6 +29,14 @@ public class DaftarFavoritData {
 
 	public String getNamaBuku(){
 		return namaBuku;
+	}
+
+	public void setJumlah(String jumlah){
+		this.jumlah = jumlah;
+	}
+
+	public String getJumlah(){
+		return jumlah;
 	}
 
 	public void setPenerbit(String penerbit){
@@ -61,11 +71,11 @@ public class DaftarFavoritData {
 		return gambar;
 	}
 
-	public void setId_buku(String id_buku){
+	public void setId_buku(int id_buku){
 		this.id_buku = id_buku;
 	}
 
-	public String getId_buku(){
+	public int getId_buku(){
 		return id_buku;
 	}
 }

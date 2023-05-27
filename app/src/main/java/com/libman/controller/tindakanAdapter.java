@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.libman.R;
+import com.libman.api.endpointUrl;
 import com.libman.model.memerlukan_tindakan.TindakanData;
 import com.libman.ui.detail_buku;
 
@@ -47,7 +48,7 @@ public class tindakanAdapter extends RecyclerView.Adapter<tindakanAdapter.ViewHo
         holder.txtTanggal.setText("Status: kembalikan sebelum " + tindakanData.getTanggalPengembalian());
 
         // Load image using Glide or any other image loading library
-        String imageUrl = "https://laravel.yoganova.my.id/assets/upload/" + tindakanData.getGambar();
+        String imageUrl = endpointUrl.BASE_URL_IMAGE + tindakanData.getGambar();
         Glide.with(holder.itemView.getContext())
                 .load(imageUrl)
                 .override(1500, 1500)

@@ -17,7 +17,7 @@
         tools:layout_margin="10dp">
 
         <EditText
-            android:id="@+id/edt_cariTindakan"
+            android:id="@+id/cariBuku"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -48,14 +48,14 @@
             android:clipToPadding="false"
             android:orientation="vertical" />
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/lottie_empty"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:lottie_rawRes="@raw/loadingdots" />
+<!--        <com.airbnb.lottie.LottieAnimationView-->
+<!--            android:id="@+id/lottie_empty"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--            app:lottie_autoPlay="true"-->
+<!--            app:lottie_loop="true"-->
+<!--            app:lottie_rawRes="@raw/loadingdots" />-->
 
     </LinearLayout>
 

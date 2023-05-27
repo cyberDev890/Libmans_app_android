@@ -10,6 +10,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -32,37 +35,28 @@ public class notification extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     private static final int NOTIFICATION_REQUEST_CODE = 1234;
+         // ...
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_notification);
-        // [START handle_data_extras]
-        if (getIntent().getExtras() != null) {
-            for (String key : getIntent().getExtras().keySet()) {
-                Object value = getIntent().getExtras().get(key);
-                Log.d(TAG, "Key: " + key + " Value: " + value);
-            }
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_notification);
+
+            btnToken = findViewById(R.id.button_notification);
+            askNotificationPermission();
+            sendUpstream();
+            btnToken.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    logRegToken();
+                }
+            });
         }
-        // [END handle_data_extras]
-    }
 
-    public void runtimeEnableAutoInit() {
-        // [START fcm_runtime_enable_auto_init]
-        FirebaseMessaging.getInstance().setAutoInitEnabled(true);
-        // [END fcm_runtime_enable_auto_init]
-    }
+        // ...
 
-    public void deviceGroupUpstream() {
-        // [START fcm_device_group_upstream]
-        String to = "a_unique_key"; // the notification key
-        AtomicInteger msgId = new AtomicInteger();
-        FirebaseMessaging.getInstance().send(new RemoteMessage.Builder(to)
-                .setMessageId(String.valueOf(msgId.get()))
-                .addData("hello", "world")
-                .build());
-        // [END fcm_device_group_upstream]
-    }
+
+
 
     public void sendUpstream() {
         final String SENDER_ID = "YOUR_SENDER_ID";
@@ -72,27 +66,11 @@ public class notification extends AppCompatActivity {
         fm.send(new RemoteMessage.Builder(SENDER_ID + "@fcm.googleapis.com")
                 .setMessageId(Integer.toString(messageId))
                 .addData("my_message", "Hello World")
-                .addData("my_action","SAY_HELLO")
+                .addData("my_action", "SAY_HELLO")
                 .build());
         // [END fcm_send_upstream]
     }
 
-    private void subscribeTopics() {
-        // [START subscribe_topics]
-        FirebaseMessaging.getInstance().subscribeToTopic("weather")
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        String msg = "Subscribed";
-                        if (!task.isSuccessful()) {
-                            msg = "Subscribe failed";
-                        }
-                        Log.d(TAG, msg);
-                        Toast.makeText(notification.this, msg, Toast.LENGTH_SHORT).show();
-                    }
-                });
-        // [END subscribe_topics]
-    }
 
     private void logRegToken() {
         // [START log_reg_token]
@@ -110,8 +88,12 @@ public class notification extends AppCompatActivity {
 
                         // Log and toast
                         String msg = "FCM Registration token: " + token;
-                        Log.d(TAG, msg);
+                        Log.d(TAG, token);
                         Toast.makeText(notification.this, msg, Toast.LENGTH_SHORT).show();
+                        ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                        ClipData clip = ClipData.newPlainText("FCM Token", token);
+                        clipboard.setPrimaryClip(clip);
+                        Toast.makeText(notification.this, "Token copied to clipboard", Toast.LENGTH_SHORT).show();
                     }
                 });
         // [END log_reg_token]

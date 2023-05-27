@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 public class HistoryData {
 
     @SerializedName("id_buku")
-    private String id_buku;
+    private int id_buku;
     @SerializedName("semester")
     private String semester;
     @SerializedName("gambar")
@@ -22,11 +22,11 @@ public class HistoryData {
     @SerializedName("tanggal_pengembalian")
     private String tanggalPengembalian;
 
-    public void setId_buku(String id_buku) {
+    public void setId_buku(int id_buku) {
         this.id_buku = id_buku;
     }
 
-    public String getId_buku() {
+    public int getId_buku() {
         return id_buku;
     }
 

@@ -12,8 +12,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.libman.R;
+import com.libman.api.endpointUrl;
 import com.libman.model.history.HistoryData;
 import com.libman.sesion.SesionManager;
+import com.libman.ui.detail_buku;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,21 +49,22 @@ public class HistoryAdapterList extends RecyclerView.Adapter<HistoryAdapterList.
         holder.txtTgl.setText("Dikembalikan pada tanggal: "+historyData.getTanggalPengembalian());
 
         // Load image using Glide or any other image loading library
-        String imageUrl = "https://laravel.yoganova.my.id/assets/upload/" + historyData.getGambar();
+        String imageUrl = endpointUrl.BASE_URL_IMAGE + historyData.getGambar();
         Glide.with(holder.itemView.getContext())
                 .load(imageUrl)
                 .override(1500, 1500)
                 .into(holder.imgBuku);
+        holder.imgBuku.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Get the clicked book data
 
-//        holder.imgBuku.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // Navigate to detail book page, passing the book ID
-//                Intent intent = new Intent(v.getContext(), detail_buku.class);
-//                intent.putExtra("id_buku", historyData.getId_buku());
-//                v.getContext().startActivity(intent);
-//            }
-//        });
+                // Create an intent to navigate to the detail book page
+                Intent intent = new Intent(v.getContext(), detail_buku.class);
+                intent.putExtra("id_buku", historyData.getId_buku());
+                v.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override

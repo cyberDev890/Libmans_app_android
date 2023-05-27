@@ -39,6 +39,7 @@ public class SesionManager {
         editor.putString(Api_token, user.getApiToken());
         editor.putString(Update, user.getUpdatedAt());
         editor.putInt(id_data_kelas, user.getIdDataKelas());
+        editor.putString(Notelp, user.getNotelp());
         editor.putString(Gambar, (String) user.getGambar());
         editor.commit();
     }
@@ -50,6 +51,7 @@ public class SesionManager {
         user.put(Jenis_kelamin, sharedPreferences.getString(Jenis_kelamin, null));
         user.put(Api_token, sharedPreferences.getString(Api_token, null));
         user.put(Update, sharedPreferences.getString(Jenis_kelamin, null));
+        user.put(Notelp, sharedPreferences.getString(Notelp, null));
         user.put(id_data_kelas, String.valueOf(sharedPreferences.getInt(id_data_kelas, 0)));
         user.put(Gambar, sharedPreferences.getString((String) Gambar, null));
         return user;
