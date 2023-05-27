@@ -6,21 +6,20 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.libman.R;
 import com.libman.api.ApiClient;
 import com.libman.api.ApiInterface;
-import com.libman.controller.HistoryAdapterList;
 import com.libman.controller.daftarFavoritAdapter;
 import com.libman.model.daftar_favorite.DaftarFavorit;
 import com.libman.model.daftar_favorite.DaftarFavoritData;
-import com.libman.model.daftarbuku.DaftarBuku;
-import com.libman.model.history.History;
-import com.libman.model.history.HistoryData;
 import com.libman.sesion.SesionManager;
 
 import java.util.List;
@@ -34,6 +33,7 @@ public class daftar_favorite extends Fragment {
     private RecyclerView rvDaftarfavorit;
     SesionManager sesionManager;
     private String _Nis;
+    private TextView cariFavorite;
     private daftarFavoritAdapter daftarFavoritAdapter;
 
     @Override
@@ -53,12 +53,29 @@ public class daftar_favorite extends Fragment {
         String NIS = sesionManager.getUserDetail().get(SesionManager.NIS);
         Toast.makeText(getActivity(), NIS, Toast.LENGTH_SHORT).show();
         rvDaftarfavorit = view.findViewById(R.id.rv_daftar_favorit);
+        cariFavorite=view.findViewById(R.id.cariFavorite);
         rvDaftarfavorit.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         daftarFavoritAdapter = new daftarFavoritAdapter();
         rvDaftarfavorit.setAdapter(daftarFavoritAdapter);
         // Fetch history data
-        fetchHistoryData(NIS);
 
+        cariFavorite.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                // Do nothing
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                daftarFavoritAdapter.getFilter().filter(charSequence);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                // Do nothing
+            }
+        });
+        fetchHistoryData(NIS);
         return view;
     }
 

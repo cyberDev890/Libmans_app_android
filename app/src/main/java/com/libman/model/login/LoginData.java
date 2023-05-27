@@ -28,9 +28,11 @@ public class LoginData {
 	@SerializedName("jenis_kelamin")
 	private String jenisKelamin;
 
-	@SerializedName("gambar")
-	private Object gambar;
+	@SerializedName("fcm_token")
+	private String fcm_token;
 
+	@SerializedName("gambar")
+	private String gambar;
 	public void setIdDataKelas(int idDataKelas){
 		this.idDataKelas = idDataKelas;
 	}
@@ -95,11 +97,19 @@ public class LoginData {
 		return jenisKelamin;
 	}
 
-	public void setGambar(Object gambar){
+	public void setFcm_token(String fcm_token){
+		this.fcm_token = fcm_token;
+	}
+
+	public String getFcm_token(){
+		return fcm_token;
+	}
+
+	public void setGambar(String gambar){
 		this.gambar = gambar;
 	}
 
-	public Object getGambar(){
+	public String getGambar(){
 		return gambar;
 	}
 }

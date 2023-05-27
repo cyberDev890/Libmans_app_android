@@ -1,25 +1,26 @@
-
 package com.libman.ui;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.libman.R;
 import com.libman.api.ApiClient;
 import com.libman.api.ApiInterface;
+import com.libman.model.daftarkelas.DaftarKelas;
+import com.libman.model.daftarkelas.DataItem;
 import com.libman.model.register.Register;
 
-import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.Toast;
-
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,8 +32,10 @@ public class signup_screen extends AppCompatActivity {
     private Spinner spinner_tingkatan, spinner_kelas, spinner_jk;
     private String Nis, Nama, Password, Notelp, Gambar, Kelas, Jk, Passwordkonfirmasi;
     ApiInterface apiInterface;
+    private List<DataItem> dataItemslist = new ArrayList<>();
 
-    @SuppressLint("MissingInflatedId")
+    private DataItem dataItem;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,18 +47,8 @@ public class signup_screen extends AppCompatActivity {
         edt_passwordkonfirmasi = findViewById(R.id.edtKonfirmasiPassword);
         edt_notelp = findViewById(R.id.edt_telpSingIn);
         edt_gambar = findViewById(R.id.edt_gambar);
-        spinner_tingkatan = findViewById(R.id.dropdownJenisProfile);
         spinner_kelas = findViewById(R.id.dropdownKelassignIn);
         spinner_jk = findViewById(R.id.dropdownJKsignIn);
-        // Mengambil daftar tingkatan yang ada
-        ArrayList<String> kelas = getKelas();
-        // Membuat adapter untuk Spinner dengan daftar tingkatan
-        ArrayAdapter<String> getKelasAdapter = new ArrayAdapter<>(signup_screen.this, android.R.layout.simple_spinner_item, kelas);
-        getKelasAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Mengatur adapter ke Spinner
-        spinner_kelas.setAdapter(getKelasAdapter);
-
-
 
         btn_signUptoSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,42 +76,65 @@ public class signup_screen extends AppCompatActivity {
                 } else if (!Password.equals(Passwordkonfirmasi)) {
                     Toast.makeText(signup_screen.this, "Password tidak sama", Toast.LENGTH_SHORT).show();
                 } else if (Nis.isEmpty() && Nama.isEmpty() && Password.isEmpty()
-                      && Kelas.isEmpty() && Jk.isEmpty() &&
+                        && Kelas.isEmpty() && Jk.isEmpty() &&
                         Notelp.isEmpty() && Gambar.isEmpty()) {
                     Toast.makeText(signup_screen.this, "Harap isi semua field", Toast.LENGTH_SHORT).show();
                 } else {
-                    register(Nis, Nama, Password, Jk, Notelp, Gambar,Kelas);
+                    register(Nis, Nama, Password, Jk, Notelp, Gambar, dataItem.getIdDataKelas());
                 }
+            }
+        });
+
+        // Retrieve class list from the server
+        getDaftarKelas();
+    }
+
+    private void getDaftarKelas() {
+        apiInterface = ApiClient.getClient().create(ApiInterface.class);
+        Call<DaftarKelas> daftarKelasCall = apiInterface.getDaftarKelas();
+        daftarKelasCall.enqueue(new Callback<DaftarKelas>() {
+            @Override
+            public void onResponse(Call<DaftarKelas> call, Response<DaftarKelas> response) {
+                if (response.isSuccessful()) {
+                    DaftarKelas daftarKelas = response.body();
+                    if (daftarKelas != null && daftarKelas.getData() != null) {
+                        dataItemslist = daftarKelas.getData();
+                        List<String> kelasList = new ArrayList<>();
+                        for (DataItem dataItem : dataItemslist) {
+                            kelasList.add(dataItem.getTingkatan() + " " + dataItem.getKelas());
+                        }
+                        ArrayAdapter<String> kelasAdapter = new ArrayAdapter<>(signup_screen.this, android.R.layout.simple_spinner_item, kelasList);
+                        kelasAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinner_kelas.setAdapter(kelasAdapter);
+                        spinner_kelas.setOnItemSelectedListener(
+                               new AdapterView.OnItemSelectedListener() {
+                                   @Override
+                                   public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                       dataItem = dataItemslist.get(i);
+                                   }
+
+                                   @Override
+                                   public void onNothingSelected(AdapterView<?> adapterView) {
+                                       dataItem = dataItemslist.get(0);
+                                   }
+                               }
+                        );
+                    }
+                } else {
+                    Toast.makeText(signup_screen.this, "Failed to retrieve class list", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DaftarKelas> call, Throwable t) {
+                Toast.makeText(signup_screen.this, "Failed to retrieve class list: " + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private ArrayList<String> getKelas() {
-        // Mendapatkan daftar tingkatan dari sumber data Anda (misalnya, API atau database)
-        ArrayList<String> daftarKelas = new ArrayList<>();
-        daftarKelas.add("1");
-        daftarKelas.add("2");
-        daftarKelas.add("3");
-        daftarKelas.add("4");
-        daftarKelas.add("5");
-        daftarKelas.add("6");
-        daftarKelas.add("7");
-        daftarKelas.add("8");
-        daftarKelas.add("9");
-        daftarKelas.add("10");
-        daftarKelas.add("11");
-        daftarKelas.add("12");
-        daftarKelas.add("13");
-        daftarKelas.add("14");
-        daftarKelas.add("15");
-        daftarKelas.add("16");
-        daftarKelas.add("17");
-        // ...
-        return daftarKelas;
-    }
-    private void register(String NIS, String nama, String password,String Jk, String noTelp, String gambar ,String idDatakelas) {
+    private void register(String NIS, String nama, String password, String Jk, String noTelp, String gambar, int idDatakelas) {
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        Call<Register> registerCall = apiInterface.registerResponse(NIS,nama,password,Jk,noTelp,gambar,idDatakelas);
+        Call<Register> registerCall = apiInterface.registerResponse(NIS, nama, password, Jk, noTelp, idDatakelas, gambar);
         registerCall.enqueue(new Callback<Register>() {
             @Override
             public void onResponse(Call<Register> call, Response<Register> response) {
@@ -135,10 +151,7 @@ public class signup_screen extends AppCompatActivity {
             @Override
             public void onFailure(Call<Register> call, Throwable t) {
                 Toast.makeText(signup_screen.this, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-
             }
         });
-
     }
-
 }

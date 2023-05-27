@@ -3,30 +3,39 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Filter;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.libman.R;
+import com.libman.api.endpointUrl;
 import com.libman.model.daftar_favorite.DaftarFavoritData;
+import com.libman.model.daftarbuku.DaftarBukuData;
 import com.libman.ui.detail_buku;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class daftarFavoritAdapter extends RecyclerView.Adapter<daftarFavoritAdapter.ViewHolder> {
+public class daftarFavoritAdapter extends RecyclerView.Adapter<daftarFavoritAdapter.ViewHolder> implements Filterable {
 
     private List<DaftarFavoritData> DaftarFavoritDataList;
+    private List<DaftarFavoritData> filteredList;
+
 
     public daftarFavoritAdapter() {
         this.DaftarFavoritDataList = new ArrayList<>();
+        this.filteredList = new ArrayList<>();
+
     }
 
     public void setData(List<DaftarFavoritData> DaftarFavoritDataList) {
         this.DaftarFavoritDataList = DaftarFavoritDataList;
+        this.filteredList = DaftarFavoritDataList;
     }
 
     @NonNull
@@ -46,7 +55,7 @@ public class daftarFavoritAdapter extends RecyclerView.Adapter<daftarFavoritAdap
         holder.txtTahun.setText("Tahun Terbit: " + daftarFavoritData.getTahunTerima());
 
         // Load image using Glide or any other image loading library
-        String imageUrl = "https://laravel.yoganova.my.id/assets/upload/" + daftarFavoritData.getGambar();
+        String imageUrl = endpointUrl.BASE_URL_IMAGE + daftarFavoritData.getGambar();
         Glide.with(holder.itemView.getContext())
                 .load(imageUrl)
                 .override(1500, 1500)
@@ -65,7 +74,7 @@ public class daftarFavoritAdapter extends RecyclerView.Adapter<daftarFavoritAdap
 
     @Override
     public int getItemCount() {
-        return DaftarFavoritDataList.size();
+        return filteredList.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -80,5 +89,36 @@ public class daftarFavoritAdapter extends RecyclerView.Adapter<daftarFavoritAdap
             txtTahun = itemView.findViewById(R.id.tahunDaftarFavorit);
             txtPenerbit = itemView.findViewById(R.id.penerbitDaftarFavorit);
         }
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String keyword = charSequence.toString().toLowerCase().trim();
+               List<DaftarFavoritData> filteredData = new ArrayList<>();
+
+                if (keyword.isEmpty()) {
+                    filteredData = DaftarFavoritDataList;
+                } else {
+                    for (DaftarFavoritData data : DaftarFavoritDataList) {
+                        if (data.getNamaBuku().toLowerCase().contains(keyword)) {
+                            filteredData.add(data);
+                        }
+                    }
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = filteredData;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                filteredList = (List<DaftarFavoritData>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 }

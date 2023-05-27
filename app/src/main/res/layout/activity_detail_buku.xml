@@ -18,7 +18,7 @@
             android:layout_width="186dp"
             android:layout_height="269dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/buku1" />
+ />
 
         <TextView
             android:id="@+id/Judul_bukuDetail"
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/mulish"
-            android:text="Matematika Kelas IX"
+            android:text=""
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -58,7 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="50"
+                android:text=""
                 android:textColor="@color/black" />
 
             <TextView
@@ -66,7 +66,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Gramedia Asri Media"
+                android:text=""
                 android:textColor="@color/black"
                 tools:layout_editor_absoluteX="244dp" />
 
@@ -75,7 +75,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Semester II"
+                android:text=""
                 android:textColor="@color/black"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="124dp"
@@ -113,6 +113,7 @@
         android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <LinearLayout
@@ -133,6 +134,8 @@
                     android:orientation="vertical"
                     android:layout_gravity="center">
                     <TextView
+                        android:id="@+id/tambahkan_favorite"
+                        android:textColorLink="@color/light_blue"
                         android:layout_height="wrap_content"
                         android:layout_width="match_parent"
                         android:text="Tambahkan ke Favorite"
