@@ -9,7 +9,6 @@
     tools:context=".ui.tentang_aplikasi"
     android:background="@color/white">
 
-
     <ImageView
         android:id="@+id/imgLogo"
         android:layout_width="55dp"
@@ -17,8 +16,6 @@
         android:layout_marginTop="30dp"
         android:layout_gravity="center"
         android:src="@drawable/logo_biru" />
-
-
 
     <TextView
         android:id="@+id/textView2"
@@ -40,7 +37,6 @@
         android:justificationMode="inter_word"
         android:textAlignment="textEnd"
         android:textColor="@color/hinText"
-        android:textSize="11sp"
-       />
+        android:textSize="11sp" />
 
 </LinearLayout>

@@ -9,24 +9,22 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center">
+        android:layout_height="match_parent">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="30dp"
-            android:layout_marginRight="50dp">
+            android:orientation="vertical"
+            android:paddingLeft="50dp"
+            android:paddingTop="50dp"
+            android:paddingRight="50dp"
+            android:paddingBottom="30dp">
 
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="30dp"
                 android:fontFamily="@font/mulish"
@@ -39,8 +37,7 @@
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/textView3"
-                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/mulish"
                 android:text="Masukan Nama, NIS, dan Password \n sesuai dengan registerData diri anda "
@@ -59,7 +56,6 @@
                 android:id="@+id/textView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/textView2"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/mulish"
                 android:text="Nama"
@@ -70,7 +66,6 @@
                 android:id="@+id/edt_namaSingIn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/textView1"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/rounded_textfield"
                 android:ems="10"
@@ -81,12 +76,10 @@
                 android:textColor="@color/black"
                 android:textColorHint="@color/hinText" />
 
-            <!-- Tetapkan ID tambahan untuk RelativeLayout ini -->
             <RelativeLayout
                 android:id="@+id/relativeLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/edt_namaSingIn"
                 android:layout_marginTop="10dp">
 
                 <TextView
@@ -120,7 +113,6 @@
                 android:id="@+id/textView51"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/relativeLayout"
                 android:layout_marginTop="18dp"
                 android:fontFamily="@font/mulish"
                 android:text="Kelas"
@@ -131,7 +123,6 @@
                 android:id="@+id/dropdownKelassignIn"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:layout_below="@id/textView51"
                 android:layout_marginTop="5dp"
                 android:autofillHints="Masukkan Kelas anda"
                 android:background="@drawable/style_spinner"
@@ -141,7 +132,6 @@
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/dropdownKelassignIn"
                 android:layout_marginTop="18dp"
                 android:fontFamily="@font/mulish"
                 android:text="No. Telephone"
@@ -152,7 +142,6 @@
                 android:id="@+id/edt_telpSingIn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/textView6"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/rounded_textfield"
                 android:fontFamily="@font/mulish"
@@ -167,7 +156,6 @@
                 android:id="@+id/textView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/edt_telpSingIn"
                 android:layout_marginTop="18dp"
                 android:fontFamily="@font/mulish"
                 android:text="Jenis kelamin"
@@ -178,7 +166,6 @@
                 android:id="@+id/dropdownJKsignIn"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:layout_below="@id/textView10"
                 android:layout_marginTop="5dp"
                 android:autofillHints="Masukkan jenis kelamin anda"
                 android:background="@drawable/style_spinner"
@@ -188,7 +175,6 @@
                 android:id="@+id/textView7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/dropdownJKsignIn"
                 android:layout_marginTop="18dp"
                 android:fontFamily="@font/mulish"
                 android:text="Password"
@@ -199,7 +185,6 @@
                 android:id="@+id/edt_passwordSingin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/textView7"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/rounded_textfield"
                 android:ems="10"
@@ -214,7 +199,6 @@
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/edt_passwordSingin"
                 android:layout_marginTop="18dp"
                 android:fontFamily="@font/mulish"
                 android:text="Konfirmasi Password"
@@ -225,7 +209,6 @@
                 android:id="@+id/edtKonfirmasiPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/textView"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/rounded_textfield"
@@ -241,15 +224,13 @@
                 android:id="@+id/btn_daftartoLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/edtKonfirmasiPassword"
                 android:layout_marginBottom="30dp"
                 android:background="@drawable/rounded_button"
                 android:fontFamily="@font/mulish_semibold"
                 android:text="Daftar"
                 android:textColor="@color/white"
                 android:textSize="17sp" />
-        </RelativeLayout>
+        </LinearLayout>
 
     </ScrollView>
 </RelativeLayout>
-

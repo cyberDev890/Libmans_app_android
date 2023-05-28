@@ -27,7 +27,9 @@ public interface ApiInterface {
         // Sesuaikan dengan path ke login pada API Anda
     Call<Login> loginResponse(
             @Field("NIS") String nis,
-            @Field("password") String password);
+            @Field("password") String password,
+            @Field("fcmToken") String fcmToken
+    );
 
     @FormUrlEncoded
     @POST("register")

@@ -28,15 +28,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     @Override
     public void onNewToken(String token) {
         super.onNewToken(token);
-
+        fcmToken = token;
         saveTokenToStorage(token);
         Log.d("FCM Token", token);
     }
-    public static String createFcmToken() {
-        String token = FirebaseMessaging.getInstance().getToken().getResult();
-        Log.d("FCM Token", token);
-        fcmToken = token;
-        return token;
+    public static String getFcmToken() {
+     return  fcmToken;
     }
 
 

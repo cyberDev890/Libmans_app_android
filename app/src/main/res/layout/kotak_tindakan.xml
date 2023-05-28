@@ -21,21 +21,22 @@
 
             <TextView
                 android:id="@+id/txt_judultindakan"
-                android:layout_width="240dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:maxLines="2"
                 android:paddingLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:fontFamily="@font/mulish"
-                android:text="Ilmu Pengetahuan Sosial eeeeeKelas 7"
+                android:text="Tidak ada tindakan"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
             <ImageView
                 android:id="@+id/placeholder_tindakan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
                 android:layout_marginHorizontal="10dp"
                 android:background="@drawable/placeholder" />
 
@@ -43,10 +44,11 @@
                 android:id="@+id/semesterTindakan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingRight="10dp"
                 android:textAlignment="textEnd"
                 android:maxLines="1"
                 android:fontFamily="@font/mulish"
-                android:text="Semester I"
+                android:text="                            "
                 android:textColor="@color/black"
                 android:textSize="14sp" />
 
@@ -67,7 +69,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/mulish"
                 android:textColor="@color/black"
-                android:text="Status : Harus dikembalikan sebelum (25 / 12 / 2022 ) "
+                android:text="        Status: Tidak ada tindakan yang harus dikembaikan        "
                 android:textAlignment="center"
                 android:textSize="12sp" />
 

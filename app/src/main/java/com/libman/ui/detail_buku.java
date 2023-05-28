@@ -1,8 +1,11 @@
 package com.libman.ui;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -39,6 +42,7 @@ public class detail_buku extends AppCompatActivity {
     SesionManager sesionManager;
     private TextView btnFavorit;
     private TextView txtJudul, txtJumlah, txtPengarang, txtSemester;
+    private Dialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +55,7 @@ public class detail_buku extends AppCompatActivity {
         txtSemester = findViewById(R.id.semester_detail);
         txtPengarang = findViewById(R.id.penerbit_detail);
         btnFavorit = findViewById(R.id.tambahkan_favorite);
+
         sesionManager = new SesionManager(this);
         String NIS = sesionManager.getUserDetail().get(SesionManager.NIS);
         loadBookDetailsDaftarBuku();
@@ -58,6 +63,34 @@ public class detail_buku extends AppCompatActivity {
         loadBookDetailsFavorit(NIS);
         loadBookDetailsTindakan(NIS);
 
+        //Create the Dialog here
+        dialog = new Dialog(this);
+        dialog.setContentView(R.layout.show_dialog);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            dialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.background));
+        }
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.setCancelable(false); //Optional
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation; //Setting the animations to dialog
+
+        Button Okay = dialog.findViewById(R.id.btn_okay);
+        Button Cancel = dialog.findViewById(R.id.btn_cancel);
+
+        Okay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              Intent intent = new Intent(detail_buku.this, daftar_favorite.class);
+              startActivity(intent);
+                dialog.dismiss();
+            }
+        });
+
+        Cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
 
         btnFavorit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +100,9 @@ public class detail_buku extends AppCompatActivity {
                 String nama_buku = txtJudul.getText().toString();
                 int id_buku = getIntent().getIntExtra("id_buku", -1);
                 TambahFavorit(nis, nama_siswa, nama_buku, String.valueOf(id_buku));
+                dialog.show(); // Showing the dialog here
+
+
             }
         });
     }
@@ -82,6 +118,7 @@ public class detail_buku extends AppCompatActivity {
                     TambahFavorit tambahFavorit = response.body();
                     if (tambahFavorit != null) {
                         Toast.makeText(detail_buku.this, tambahFavorit.getMessage(), Toast.LENGTH_SHORT).show();
+                        dialog.show(); // Showing the dialog here
                     }
                 } else {
                     Toast.makeText(detail_buku.this, "Gagal menambahkan buku ke favorit", Toast.LENGTH_SHORT).show();

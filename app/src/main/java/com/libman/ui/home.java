@@ -94,9 +94,14 @@ public class home extends Fragment {
                         historyAdapter.notifyDataSetChanged();
                     } else {
                         Toast.makeText(getActivity(), "Data Kosong", Toast.LENGTH_SHORT).show();
+                        Fragment daftarBukuFragment = new fragment_home_kosong();
+                        getParentFragmentManager().beginTransaction()
+                                .replace(R.id.framelayout_main, daftarBukuFragment)
+                                .commit();
                     }
                 } else {
                     Toast.makeText(getActivity(), "Failed to fetch data", Toast.LENGTH_SHORT).show();
+
                 }
             }
 
@@ -121,9 +126,11 @@ public class home extends Fragment {
                         TindakanAdapterCard.notifyDataSetChanged();
                     } else {
                         Toast.makeText(getActivity(), "Data Kosong", Toast.LENGTH_SHORT).show();
+
                     }
                 } else {
                     Toast.makeText(getActivity(), "Failed to fetch data", Toast.LENGTH_SHORT).show();
+
                 }
             }
 

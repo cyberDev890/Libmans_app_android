@@ -104,7 +104,7 @@ public class daftarBukuAdapter extends RecyclerView.Adapter<daftarBukuAdapter.Vi
                     filteredData = daftarBukuDataList;
                 } else {
                     for (DaftarBukuData data : daftarBukuDataList) {
-                        if (data.getJudulBuku().toLowerCase().contains(keyword)) {
+                        if (data.getJudulBuku().toLowerCase().contains(keyword) ) {
                             filteredData.add(data);
                         }
                     }

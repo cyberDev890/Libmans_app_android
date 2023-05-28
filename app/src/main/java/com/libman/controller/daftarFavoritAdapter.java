@@ -54,7 +54,7 @@ public class daftarFavoritAdapter extends RecyclerView.Adapter<daftarFavoritAdap
         holder.txtPenerbit.setText("Penerbit: " + daftarFavoritData.getPenerbit());
         holder.txtTahun.setText("Tahun Terbit: " + daftarFavoritData.getTahunTerima());
 
-        // Load image using Glide or any other image loading library
+        // Load image using Glide or  n other image loading library
         String imageUrl = endpointUrl.BASE_URL_IMAGE + daftarFavoritData.getGambar();
         Glide.with(holder.itemView.getContext())
                 .load(imageUrl)

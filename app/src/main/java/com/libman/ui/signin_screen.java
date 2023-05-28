@@ -1,12 +1,14 @@
 
 package com.libman.ui;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -14,11 +16,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.libman.R;
 import com.libman.api.ApiClient;
 import com.libman.api.ApiInterface;
 import com.libman.model.login.Login;
 import com.libman.model.login.LoginData;
+import com.libman.notification.MyFirebaseMessagingService;
 import com.libman.sesion.SesionManager;
 
 import retrofit2.Call;
@@ -29,10 +36,12 @@ public class signin_screen extends AppCompatActivity implements View.OnClickList
     private EditText edittextPassword, editTextNis;
     private TextView btn_signUp;
     private Button btn_signIn;
+    private String token;
     private boolean passwordVisible;
+    MyFirebaseMessagingService myFirebaseMessagingService;
     ApiInterface apiInterface;
     SesionManager sesionManager;
-    String Nis, Password;
+    String Nis, Password, fcmToken;
 
 
     @Override
@@ -70,6 +79,22 @@ public class signin_screen extends AppCompatActivity implements View.OnClickList
 
         });
 
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w("FOM", "Fetching FCM registration token failed", task.getException());
+                            return;
+                        }
+
+                        // Get new FCM registration token
+                        token = task.getResult();
+
+
+                        Log.d("FOM", token);
+                    }
+                });
     }
 
     @Override
@@ -78,7 +103,10 @@ public class signin_screen extends AppCompatActivity implements View.OnClickList
             case R.id.btn_masuk:
                 Nis = editTextNis.getText().toString();
                 Password = edittextPassword.getText().toString();
-                login(Nis, Password);
+                fcmToken= token;
+
+                login(Nis, Password,fcmToken);
+
                 break;
 
             case R.id.btn_daftar:
@@ -89,22 +117,26 @@ public class signin_screen extends AppCompatActivity implements View.OnClickList
 
     }
 
-    private void login(String nis, String password) {
+    private void login(String nis, String password,String fcmToken){
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        Call<Login> loginCall = apiInterface.loginResponse(nis, password);
+        Call<Login> loginCall = apiInterface.loginResponse(nis, password,fcmToken);
         loginCall.enqueue(new Callback<Login>() {
             @Override
             public void onResponse(Call<Login> call, Response<Login> response) {
-                if (response.body() != null && response.isSuccessful() && response.body().getStatus()) {
+                if (response.body() != null && response.isSuccessful() && response.body().isStatus()) {
                     LoginData logindata = response.body().getData();
                     sesionManager = new SesionManager(signin_screen.this);
                     sesionManager.createLoginSesion(logindata);
+                    Snackbar.make(findViewById(R.id.btn_masuk), response.body().getMessage(), Snackbar.LENGTH_LONG).show();
                     Toast.makeText(signin_screen.this, response.body().getData().getNamaSiswa(), Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(signin_screen.this, dashboard.class);
                     startActivity(intent);
                     finish();
                 } else {
-                    Toast.makeText(signin_screen.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast toast = Toast.makeText(signin_screen.this, response.body().getData().getNamaSiswa(), Toast.LENGTH_SHORT);
+                    View view = toast.getView();
+                    view.setBackgroundColor(getResources().getColor(R.color.dark_blue)); // Ganti dengan resource warna biru yang Anda inginkan
+                    toast.show();
                 }
             }
 
@@ -114,7 +146,11 @@ public class signin_screen extends AppCompatActivity implements View.OnClickList
 
             }
         });
-
-
     }
+
+
+
+
+
+
 }

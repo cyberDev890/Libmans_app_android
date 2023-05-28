@@ -28,11 +28,12 @@ public class LoginData {
 	@SerializedName("jenis_kelamin")
 	private String jenisKelamin;
 
-	@SerializedName("fcm_token")
-	private String fcm_token;
+	@SerializedName("fcmToken")
+	private String fcmToken;
 
 	@SerializedName("gambar")
 	private String gambar;
+
 	public void setIdDataKelas(int idDataKelas){
 		this.idDataKelas = idDataKelas;
 	}
@@ -97,12 +98,12 @@ public class LoginData {
 		return jenisKelamin;
 	}
 
-	public void setFcm_token(String fcm_token){
-		this.fcm_token = fcm_token;
+	public void setFcmToken(String fcmToken){
+		this.fcmToken = fcmToken;
 	}
 
-	public String getFcm_token(){
-		return fcm_token;
+	public String getFcmToken(){
+		return fcmToken;
 	}
 
 	public void setGambar(String gambar){

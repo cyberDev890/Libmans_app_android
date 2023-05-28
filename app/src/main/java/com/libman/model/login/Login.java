@@ -2,23 +2,23 @@ package com.libman.model.login;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Login {
+public class Login{
 
 	@SerializedName("data")
-	private LoginData data;
+	private LoginData loginData;
 
 	@SerializedName("message")
 	private String message;
 
 	@SerializedName("status")
-	private Boolean status;
+	private boolean status;
 
-	public void setData(LoginData data){
-		this.data = data;
+	public void setData(LoginData loginData){
+		this.loginData = loginData;
 	}
 
 	public LoginData getData(){
-		return data;
+		return loginData;
 	}
 
 	public void setMessage(String message){
@@ -29,11 +29,11 @@ public class Login {
 		return message;
 	}
 
-	public void setStatus(Boolean status){
+	public void setStatus(boolean status){
 		this.status = status;
 	}
 
-	public Boolean getStatus(){
+	public boolean isStatus(){
 		return status;
 	}
 }

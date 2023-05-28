@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="10dp"
     android:orientation="vertical"
     tools:context=".ui.detail_buku">
 
@@ -17,8 +18,8 @@
             android:id="@+id/img_bukuDetail"
             android:layout_width="186dp"
             android:layout_height="269dp"
-            android:scaleType="centerCrop"
- />
+            android:scaleType="fitCenter"
+            android:src="@drawable/buku1" />
 
         <TextView
             android:id="@+id/Judul_bukuDetail"
@@ -26,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/mulish"
-            android:text=""
+            android:text="Matematika Kelas IX"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -40,6 +41,11 @@
         android:layout_marginTop="10dp"
         android:orientation="vertical">
 
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -48,8 +54,8 @@
 
             <ImageView
                 android:id="@+id/imageView2"
-                android:layout_width="24dp"
-                android:layout_height="26dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
                 android:src="@drawable/ic_buku" />
 
@@ -57,8 +63,8 @@
                 android:id="@+id/jumlah_bukuDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text=""
+                android:layout_weight="1"
+                android:text="50"
                 android:textColor="@color/black" />
 
             <TextView
@@ -66,7 +72,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text=""
+                android:text="Gramedia Asri Media"
                 android:textColor="@color/black"
                 tools:layout_editor_absoluteX="244dp" />
 
@@ -75,36 +81,43 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text=""
+                android:text="Semester II"
                 android:textColor="@color/black"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="124dp"
                 tools:layout_editor_absoluteY="12dp" />
 
-
         </LinearLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@android:color/darker_gray" />
 
         <TextView
             android:id="@+id/Judul_bukuDetail2"
-            android:layout_width="176dp"
-            android:layout_height="26dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:text="Matematika Kelas IX"
+            android:fontFamily="@font/mulish"
             android:textColor="@color/black"
             android:textSize="14sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/detailDesc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:text="Buku ini merupakan buku guru yang dipersiapkan Pemerintah dalam rangka implementasi Kurikulum 2013. Buku guru ini disusun dan ditelaah oleh berbagai pihak di bawah koordinasi Kementerian Pendidikan dan Kebudayaan, dan dipergunakan dalam tahap awal penerapan Kurikulum 2013."
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteY="100dp" />
-
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/detailDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:text="Buku ini merupakan buku perpustakaan SMPN 1 Bangsalsari. Buku ini disusun dan ditelaah oleh berbagai pihak di bawah koordinasi Kementerian Pendidikan dan Kebudayaan. Buku tidak untuk diperjual belikan, kehilangan atau kerusak yang dilakukan peminjam terhadap buku harus melakukan ganti rugi."
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="100dp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -113,7 +126,6 @@
         android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <LinearLayout
@@ -133,9 +145,9 @@
                     android:layout_width="match_parent"
                     android:orientation="vertical"
                     android:layout_gravity="center">
+
                     <TextView
                         android:id="@+id/tambahkan_favorite"
-                        android:textColorLink="@color/light_blue"
                         android:layout_height="wrap_content"
                         android:layout_width="match_parent"
                         android:text="Tambahkan ke Favorite"

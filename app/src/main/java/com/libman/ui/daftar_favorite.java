@@ -1,5 +1,6 @@
 package com.libman.ui;
 
+import android.app.Dialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,6 +12,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +37,7 @@ public class daftar_favorite extends Fragment {
     private String _Nis;
     private TextView cariFavorite;
     private daftarFavoritAdapter daftarFavoritAdapter;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

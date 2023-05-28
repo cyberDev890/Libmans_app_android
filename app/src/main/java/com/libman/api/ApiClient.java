@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
-    private static final String BASE_URL = "https://26fe-36-68-216-50.ngrok-free.app/api/"; // Ubah URL dasar menjadi sesuai dengan persyaratan
+    private static final String BASE_URL = "https://laravel.yoganova.my.id/api/"; // Ubah URL dasar menjadi sesuai dengan persyaratan
 
     private static Retrofit retrofit;
 
