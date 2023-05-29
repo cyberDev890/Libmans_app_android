@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,7 +17,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.libman.R;
 import com.libman.api.ApiClient;
 import com.libman.api.ApiInterface;
@@ -35,11 +38,16 @@ public class daftar_buku extends Fragment {
 
     private daftarBukuAdapter adapter;
     private EditText cariBuku;
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private LottieAnimationView animationView;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_daftar_buku, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.rv_DaftarBuku);
+        swipeRefreshLayout = view.findViewById(R.id.refresher);
+        animationView=view.findViewById(R.id.lottie_empty);
         adapter = new daftarBukuAdapter();
         recyclerView.setAdapter(adapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
@@ -62,10 +70,19 @@ public class daftar_buku extends Fragment {
             }
         });
         loadDataBuku();
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(true); // menampilkan progress bar
+                loadDataBuku();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
         return view;
     }
 
     private void loadDataBuku() {
+        animationView.setVisibility(View.VISIBLE);
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
         Call<DaftarBuku> call = apiInterface.getDaftarBuku();
         call.enqueue(new Callback<DaftarBuku>() {
@@ -77,6 +94,7 @@ public class daftar_buku extends Fragment {
                         List<DaftarBukuData> dataBuku = daftarBuku.getData();
                         adapter.setData(dataBuku);
                         adapter.notifyDataSetChanged();
+                        animationView.setVisibility(View.INVISIBLE);
                     }
                 }
             }
@@ -84,6 +102,8 @@ public class daftar_buku extends Fragment {
             @Override
             public void onFailure(@NonNull Call<DaftarBuku> call, @NonNull Throwable t) {
                 Toast.makeText(getActivity(), "Gagal mengambil data buku", Toast.LENGTH_SHORT).show();
+                animationView.setVisibility(View.INVISIBLE);
+
             }
         });
     }

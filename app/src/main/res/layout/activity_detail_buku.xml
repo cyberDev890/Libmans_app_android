@@ -113,6 +113,7 @@
         android:id="@+id/detailDesc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
         android:layout_marginEnd="10dp"
         android:text="Buku ini merupakan buku perpustakaan SMPN 1 Bangsalsari. Buku ini disusun dan ditelaah oleh berbagai pihak di bawah koordinasi Kementerian Pendidikan dan Kebudayaan. Buku tidak untuk diperjual belikan, kehilangan atau kerusak yang dilakukan peminjam terhadap buku harus melakukan ganti rugi."
         tools:ignore="MissingConstraints"
@@ -158,6 +159,7 @@
                     <TextView
                         android:layout_height="wrap_content"
                         android:layout_width="match_parent"
+                        android:textColor="@color/black"
                         android:text="Untuk menjadikannya daftar keinginan dikemudian hari"
                         android:textSize="12sp"
                         android:fontFamily="@font/mulish_semibold"/>

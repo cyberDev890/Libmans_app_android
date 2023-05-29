@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.libman.R;
@@ -41,6 +42,7 @@ public class home extends Fragment {
     private RecyclerView.Adapter adapterListbuku, adapterTindakanbuku;
     private RecyclerView rvListbuku, rvTindakanbuku;
     private ImageView img_more;
+    private TextView tv_more;
     SesionManager sesionManager;
 
 
@@ -49,10 +51,10 @@ public class home extends Fragment {
                              Bundle savedInstanceState) {
         sesionManager = new SesionManager(getActivity());
         String NIS = sesionManager.getUserDetail().get(SesionManager.NIS);
-        Toast.makeText(getActivity(), NIS, Toast.LENGTH_SHORT).show();
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         img_more = view.findViewById(R.id.ic_more);
+        tv_more = view.findViewById(R.id.lihat_lainnya);
         rvListbuku = view.findViewById(R.id.rv_HistoryHome);
         rvListbuku.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         historyAdapter = new HistoryAdapter(getContext());
@@ -66,6 +68,16 @@ public class home extends Fragment {
         fetchTindakanData(NIS);
         fetchHistoryData(NIS);
 
+        tv_more.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Replace the current fragment with 'daftar_buku' fragment
+                Fragment daftarTindakanFragment = new memerlukan_tindakan();
+                getParentFragmentManager().beginTransaction()
+                        .replace(R.id.framelayout_main, daftarTindakanFragment)
+                        .commit();
+            }
+        });
         img_more.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,7 +88,7 @@ public class home extends Fragment {
                         .commit();
             }
         });
-        return view;
+        return view; 
     }
 
     private void fetchHistoryData(String nis) {

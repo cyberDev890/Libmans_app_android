@@ -33,31 +33,38 @@
             tools:ignore="TouchTargetSizeCheck" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/linear_card_tindakan"
+    <RelativeLayout
+        android:id="@+id/relative_daftarbuku"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="10dp"
         android:layout_marginTop="20dp"
+        android:gravity="center_vertical"
         android:orientation="vertical">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_DaftarBuku"
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refresher"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:orientation="vertical" />
+            android:layout_height="wrap_content">
 
-<!--        <com.airbnb.lottie.LottieAnimationView-->
-<!--            android:id="@+id/lottie_empty"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_gravity="center"-->
-<!--            app:lottie_autoPlay="true"-->
-<!--            app:lottie_loop="true"-->
-<!--            app:lottie_rawRes="@raw/loadingdots" />-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_DaftarBuku"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:orientation="vertical" />
 
-    </LinearLayout>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/lottie_empty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    app:lottie_rawRes="@raw/loadingdots" />
+    </RelativeLayout>
 
 
 </LinearLayout>

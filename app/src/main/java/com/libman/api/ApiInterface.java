@@ -85,11 +85,6 @@ public interface ApiInterface {
     @GET("daftarkelas")
     Call<DaftarKelas> getDaftarKelas();
 
-    @FormUrlEncoded
-    @POST("sendToken")
-    Call<FcmToken> fcmToken(
-            @Field("NIS") String nis,
-            @Field("fcmToken") String fcmToken
-    );
+
 
 }

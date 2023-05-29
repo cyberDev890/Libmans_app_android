@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -13,9 +14,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.libman.R;
 import com.libman.api.ApiClient;
 import com.libman.api.ApiInterface;
@@ -38,6 +41,8 @@ public class daftar_favorite extends Fragment {
     private TextView cariFavorite;
     private daftarFavoritAdapter daftarFavoritAdapter;
 
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private LottieAnimationView animationView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,9 +59,10 @@ public class daftar_favorite extends Fragment {
         View view = inflater.inflate(R.layout.fragment_daftar_favorite, container, false);
         sesionManager = new SesionManager(getActivity());
         String NIS = sesionManager.getUserDetail().get(SesionManager.NIS);
-        Toast.makeText(getActivity(), NIS, Toast.LENGTH_SHORT).show();
         rvDaftarfavorit = view.findViewById(R.id.rv_daftar_favorit);
         cariFavorite=view.findViewById(R.id.cariFavorite);
+        swipeRefreshLayout = view.findViewById(R.id.refresherFavorit);
+        animationView=view.findViewById(R.id.lottie_emptyfavorit);
         rvDaftarfavorit.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         daftarFavoritAdapter = new daftarFavoritAdapter();
         rvDaftarfavorit.setAdapter(daftarFavoritAdapter);
@@ -78,11 +84,22 @@ public class daftar_favorite extends Fragment {
                 // Do nothing
             }
         });
-        fetchHistoryData(NIS);
+        fetchFavoritData(NIS);
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(true); // menampilkan progress bar
+                fetchFavoritData(NIS);
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
         return view;
     }
 
-    private void fetchHistoryData(String nis ) {
+    private void fetchFavoritData(String nis ) {
+        animationView.setVisibility(View.VISIBLE);
+
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
         Call<DaftarFavorit> call = apiInterface.daftarFavorit(nis);
 
@@ -95,6 +112,7 @@ public class daftar_favorite extends Fragment {
                        List<DaftarFavoritData> DatafavoritList = daftarFavorit.getData();
                        daftarFavoritAdapter.setData(DatafavoritList);
                        daftarFavoritAdapter.notifyDataSetChanged();
+                       animationView.setVisibility(View.INVISIBLE);
                    } else {
                        Toast.makeText(getActivity(), "Data Kosong", Toast.LENGTH_SHORT).show();
                    }
@@ -105,7 +123,7 @@ public class daftar_favorite extends Fragment {
 
            @Override
            public void onFailure(Call<DaftarFavorit> call, Throwable t) {
-
+               animationView.setVisibility(View.INVISIBLE);
            }
        });
     }

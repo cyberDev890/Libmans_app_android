@@ -5,12 +5,15 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.libman.R;
 import com.libman.api.ApiClient;
 import com.libman.api.ApiInterface;
@@ -35,7 +38,9 @@ public class memerlukan_tindakan extends Fragment {
     SesionManager sesionManager;
     private String _Nis;
     private tindakanAdapter TindakanAdapter;
-
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private LottieAnimationView animationView;
+    private ProgressBar pbData;
 
 
     @Override
@@ -46,16 +51,27 @@ public class memerlukan_tindakan extends Fragment {
 
         sesionManager = new SesionManager(getActivity());
         String NIS = sesionManager.getUserDetail().get(SesionManager.NIS);
-        Toast.makeText(getActivity(), NIS, Toast.LENGTH_SHORT).show();
         rvTindakan = view.findViewById(R.id.rv_tindakan);
+        swipeRefreshLayout = view.findViewById(R.id.refreshertindakan);
+        animationView=view.findViewById(R.id.lottie_emptyTindakan);
         rvTindakan.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         TindakanAdapter = new tindakanAdapter();
         rvTindakan.setAdapter(TindakanAdapter);
         // Fetch history data
-        fetchHistoryData(NIS);
+        fetchTindakanData(NIS);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(true); // menampilkan progress bar
+                fetchTindakanData(NIS);
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
         return view;
+
     }
-    private void fetchHistoryData(String nis ) {
+    private void fetchTindakanData(String nis ) {
+        animationView.setVisibility(View.VISIBLE);
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
         Call<Tindakan> call = apiInterface.tindakan(nis);
         call.enqueue(new Callback<Tindakan>() {
@@ -67,6 +83,8 @@ public class memerlukan_tindakan extends Fragment {
                         List<TindakanData> tindakanList = tindakan.getData();
                         TindakanAdapter.setData(tindakanList);
                         TindakanAdapter.notifyDataSetChanged();
+                        animationView.setVisibility(View.INVISIBLE);
+
                     } else {
                         Toast.makeText(getActivity(), "Data Kosong", Toast.LENGTH_SHORT).show();
                     }
@@ -77,6 +95,7 @@ public class memerlukan_tindakan extends Fragment {
 
             @Override
             public void onFailure(Call<Tindakan> call, Throwable t) {
+                animationView.setVisibility(View.INVISIBLE);
 
             }
         });

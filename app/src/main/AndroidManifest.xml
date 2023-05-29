@@ -52,10 +52,6 @@
             android:name=".ui.splash_screen"
             android:exported="false"
             android:windowSoftInputMode="stateHidden"></activity>
-        <activity
-            android:name=".ui.notification"
-            android:exported="true"
-            android:windowSoftInputMode="stateHidden"></activity>
 
         <service
             android:name=".notification.MyFirebaseMessagingService"

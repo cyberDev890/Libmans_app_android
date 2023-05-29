@@ -59,25 +59,25 @@
                 android:src="@drawable/sbk" />
 
             <ImageView
+                android:id="@+id/ic_ips"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/ips" />
+
+            <ImageView
                 android:id="@+id/ic_olahraga"
                 android:layout_width="56dp"
                 android:layout_height="56dp"
                 android:layout_marginRight="20dp"
-                android:src="@drawable/sbk" />
+                android:src="@drawable/olahraga" />
 
             <ImageView
                 android:id="@+id/ic_ipa"
                 android:layout_width="56dp"
                 android:layout_height="56dp"
                 android:layout_marginRight="20dp"
-                android:src="@drawable/sbk" />
-
-            <ImageView
-                android:id="@+id/ic_ips"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_marginRight="20dp"
-                android:src="@drawable/sbk" />
+                android:src="@drawable/ipa" />
 
             <ImageView
                 android:id="@+id/ic_more"
@@ -116,7 +116,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="40dp"
                 android:fontFamily="@font/mulish"
                 android:text="Olahraga"
                 android:textColor="@color/black"
@@ -125,7 +125,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
+                android:layout_marginLeft="35dp"
                 android:fontFamily="@font/mulish"
                 android:text="IPA"
                 android:textColor="@color/black"
