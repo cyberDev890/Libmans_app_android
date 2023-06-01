@@ -8,10 +8,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -42,6 +45,7 @@ public class history_peminjaman extends Fragment {
     private String _Nis;
     private HistoryAdapterList historyAdapterList;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private TextView cariHistory;
     private LottieAnimationView animationView;
 
     @Override
@@ -60,11 +64,30 @@ public class history_peminjaman extends Fragment {
         sesionManager = new SesionManager(getActivity());
         String NIS = sesionManager.getUserDetail().get(SesionManager.NIS);
         rvHistory = view.findViewById(R.id.rv_HistoryPeminjaman);
+        cariHistory = view.findViewById(R.id.edt_cariHistory);
         swipeRefreshLayout = view.findViewById(R.id.refresherHistory);
         animationView = view.findViewById(R.id.lottie_emptyHistory);
+        animationView.setScale(0.2f);
         rvHistory.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         historyAdapterList = new HistoryAdapterList();
         rvHistory.setAdapter(historyAdapterList);
+        cariHistory.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                // Do nothing
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                historyAdapterList.getFilter().filter(charSequence);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                // Do nothing
+            }
+        });
+
         // Fetch history data
         fetchHistoryData(NIS);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

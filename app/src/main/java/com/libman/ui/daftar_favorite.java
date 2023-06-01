@@ -55,18 +55,17 @@ public class daftar_favorite extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_daftar_favorite, container, false);
         sesionManager = new SesionManager(getActivity());
         String NIS = sesionManager.getUserDetail().get(SesionManager.NIS);
         rvDaftarfavorit = view.findViewById(R.id.rv_daftar_favorit);
-        cariFavorite=view.findViewById(R.id.cariFavorite);
+        cariFavorite = view.findViewById(R.id.cariFavorite);
         swipeRefreshLayout = view.findViewById(R.id.refresherFavorit);
-        animationView=view.findViewById(R.id.lottie_emptyfavorit);
+        animationView = view.findViewById(R.id.lottie_emptyfavorit);
+        animationView.setScale(0.2f);
         rvDaftarfavorit.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         daftarFavoritAdapter = new daftarFavoritAdapter();
         rvDaftarfavorit.setAdapter(daftarFavoritAdapter);
-        // Fetch history data
 
         cariFavorite.addTextChangedListener(new TextWatcher() {
             @Override
@@ -89,7 +88,7 @@ public class daftar_favorite extends Fragment {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                swipeRefreshLayout.setRefreshing(true); // menampilkan progress bar
+                swipeRefreshLayout.setRefreshing(true);
                 fetchFavoritData(NIS);
                 swipeRefreshLayout.setRefreshing(false);
             }
@@ -97,34 +96,34 @@ public class daftar_favorite extends Fragment {
         return view;
     }
 
-    private void fetchFavoritData(String nis ) {
+    private void fetchFavoritData(String nis) {
         animationView.setVisibility(View.VISIBLE);
 
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
         Call<DaftarFavorit> call = apiInterface.daftarFavorit(nis);
 
-       call.enqueue(new Callback<DaftarFavorit>() {
-           @Override
-           public void onResponse(Call<DaftarFavorit> call, Response<DaftarFavorit> response) {
-               if (response.isSuccessful()) {
-                   DaftarFavorit daftarFavorit = response.body();
-                   if (daftarFavorit != null && daftarFavorit.getStatus()) {
-                       List<DaftarFavoritData> DatafavoritList = daftarFavorit.getData();
-                       daftarFavoritAdapter.setData(DatafavoritList);
-                       daftarFavoritAdapter.notifyDataSetChanged();
-                       animationView.setVisibility(View.INVISIBLE);
-                   } else {
-                       Toast.makeText(getActivity(), "Data Kosong", Toast.LENGTH_SHORT).show();
-                   }
-               } else {
-                   Toast.makeText(getActivity(), "Failed to fetch data", Toast.LENGTH_SHORT).show();
-               }
-           }
+        call.enqueue(new Callback<DaftarFavorit>() {
+            @Override
+            public void onResponse(Call<DaftarFavorit> call, Response<DaftarFavorit> response) {
+                if (response.isSuccessful()) {
+                    DaftarFavorit daftarFavorit = response.body();
+                    if (daftarFavorit != null && daftarFavorit.getStatus()) {
+                        List<DaftarFavoritData> DatafavoritList = daftarFavorit.getData();
+                        daftarFavoritAdapter.setData(DatafavoritList);
+                        daftarFavoritAdapter.notifyDataSetChanged();
+                        animationView.setVisibility(View.INVISIBLE);
+                    } else {
+                        Toast.makeText(getActivity(), "Data Kosong", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(getActivity(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
+                }
+            }
 
-           @Override
-           public void onFailure(Call<DaftarFavorit> call, Throwable t) {
-               animationView.setVisibility(View.INVISIBLE);
-           }
-       });
+            @Override
+            public void onFailure(Call<DaftarFavorit> call, Throwable t) {
+                Toast.makeText(getActivity(), "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

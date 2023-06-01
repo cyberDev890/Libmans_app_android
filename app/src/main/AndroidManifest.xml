@@ -30,17 +30,15 @@
             android:name=".ui.memerlukan_tindakan"
             android:exported="false"></activity>
         <activity
-            android:name=".ui.dashboard"
+            android:name=".ui.splash_screen"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.welcome_screen"
-            android:exported="false"></activity>
         <activity
             android:name=".ui.signin_screen"
             android:exported="false"
@@ -49,7 +47,7 @@
             android:name=".ui.signup_screen"
             android:exported="false"></activity>
         <activity
-            android:name=".ui.splash_screen"
+            android:name=".ui.dashboard"
             android:exported="false"
             android:windowSoftInputMode="stateHidden"></activity>
 

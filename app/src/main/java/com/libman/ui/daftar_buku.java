@@ -1,6 +1,7 @@
 package com.libman.ui;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -48,6 +49,7 @@ public class daftar_buku extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.rv_DaftarBuku);
         swipeRefreshLayout = view.findViewById(R.id.refresher);
         animationView=view.findViewById(R.id.lottie_empty);
+        animationView.setScale(0.2f);
         adapter = new daftarBukuAdapter();
         recyclerView.setAdapter(adapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());

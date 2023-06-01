@@ -7,6 +7,7 @@
     android:paddingTop="8dp"
     android:paddingBottom="8dp"
     android:paddingStart="8dp"
+    android:layout_marginRight="10dp"
     android:paddingEnd="8dp"
     android:background="@drawable/bg_card">
 
@@ -15,6 +16,7 @@
         android:id="@+id/img_buku"
         android:layout_width="wrap_content"
         android:layout_height="160dp"
+        android:background="#00000000"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

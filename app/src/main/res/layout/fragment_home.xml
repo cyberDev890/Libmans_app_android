@@ -1,213 +1,288 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipeRefreshLayout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:background="@color/white"
+    android:layout_height="match_parent"
     tools:context=".ui.home">
 
 
-    <LinearLayout
-        android:id="@+id/linear_card_tindakan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                android:text="Daftar Buku"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
-        </RelativeLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/card_icons"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/icons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="end|left"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/ic_sbk"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_marginRight="20dp"
-                android:src="@drawable/sbk" />
-
-            <ImageView
-                android:id="@+id/ic_ips"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_marginRight="20dp"
-                android:src="@drawable/ips" />
-
-            <ImageView
-                android:id="@+id/ic_olahraga"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_marginRight="20dp"
-                android:src="@drawable/olahraga" />
-
-            <ImageView
-                android:id="@+id/ic_ipa"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_marginRight="20dp"
-                android:src="@drawable/ipa" />
-
-            <ImageView
-                android:id="@+id/ic_more"
-                android:layout_width="48dp"
-                android:layout_height="58dp"
-                android:layout_marginRight="20dp"
-                android:src="@drawable/more" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/icons_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|left"
-            android:layout_margin="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/mulish"
-                android:text="SBK"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:fontFamily="@font/mulish"
-                android:text="IPS"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
-                android:fontFamily="@font/mulish"
-                android:text="Olahraga"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="35dp"
-                android:fontFamily="@font/mulish"
-                android:text="IPA"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/card_tindakan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:background="@color/white"
             android:gravity="center_horizontal"
-            android:padding="10dp">
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/txt_tindakan"
+
+            <LinearLayout
+                android:id="@+id/linear_card_tindakan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="Daftar Buku"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/card_icons"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/mulish"
-                android:text="Memerlukan Tindakan"
-                android:textAlignment="textStart"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:layout_margin="10dp"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/lihat_lainnya"
+                <LinearLayout
+                    android:id="@+id/icons"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end|left"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/ic_sbk"
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:layout_marginRight="20dp"
+                        android:src="@drawable/sbk" />
+
+                    <ImageView
+                        android:id="@+id/ic_ips"
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:layout_marginRight="20dp"
+                        android:src="@drawable/ips" />
+
+                    <ImageView
+                        android:id="@+id/ic_olahraga"
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:layout_marginRight="20dp"
+                        android:src="@drawable/olahraga" />
+
+                    <ImageView
+                        android:id="@+id/ic_ipa"
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:layout_marginRight="20dp"
+                        android:src="@drawable/ipa" />
+
+                    <ImageView
+                        android:id="@+id/ic_more"
+                        android:layout_width="48dp"
+                        android:layout_height="58dp"
+                        android:layout_marginRight="20dp"
+                        android:src="@drawable/more" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/icons_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|left"
+                    android:layout_margin="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/mulish"
+                        android:text="SBK"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50dp"
+                        android:fontFamily="@font/mulish"
+                        android:text="IPS"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="40dp"
+                        android:fontFamily="@font/mulish"
+                        android:text="Olahraga"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="35dp"
+                        android:fontFamily="@font/mulish"
+                        android:text="IPA"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linear_card_Rekomendasi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:padding="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+
+                    <TextView
+                        android:id="@+id/txt_Rekomendasi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:text="Rekomendasi Buku Terlaris"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_Rekomendasi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/txt_Rekomendasi"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal" />
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/lottie_emptyrekomendasiCard"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/loadingdots" />
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/card_tindakan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/txt_tindakan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/mulish"
+                        android:text="Memerlukan Tindakan"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/lihat_lainnya"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/mulish"
+                        android:text="Lihat Lainnya"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/teal_200"
+                        android:textSize="18sp" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_tindakanHome"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_below="@id/txt_tindakan"
+                        android:layout_marginTop="10dp" />
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/lottie_emptytindakanCard"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/loadingdots" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/mulish"
-                android:text="Lihat Lainnya"
-                android:textAlignment="textEnd"
-                android:textColor="@color/teal_200"
-                android:textSize="18sp" />
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:padding="10dp">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_tindakanHome"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/txt_tindakan"
-                android:layout_marginTop="10dp" />
+                <TextView
+                    android:id="@+id/history"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mulish"
+                    android:text="History Peminjaman"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
 
-        </RelativeLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_HistoryHome"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp"
+                    android:layout_marginTop="30dp"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp" />
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:gravity="center_vertical"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/history"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/mulish"
-            android:text="History Peminjaman"
-            android:textAlignment="textStart"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_HistoryHome"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp" />
-
-    </LinearLayout>
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/lottie_emptyHistorycard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    app:lottie_rawRes="@raw/loadingdots" />
+            </RelativeLayout>
 
 
+        </LinearLayout>
+    </ScrollView>
 
-</LinearLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

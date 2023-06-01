@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -41,7 +42,7 @@ public class detail_buku extends AppCompatActivity {
     private ImageView imgBuku;
     SesionManager sesionManager;
     private TextView btnFavorit;
-    private TextView txtJudul, txtJumlah, txtPengarang, txtSemester;
+    private TextView txtJudul, txtjudul2,txtJumlah, txtPengarang, txtSemester,txtDeskripsi;
     private Dialog dialog;
 
     @Override
@@ -55,7 +56,10 @@ public class detail_buku extends AppCompatActivity {
         txtSemester = findViewById(R.id.semester_detail);
         txtPengarang = findViewById(R.id.penerbit_detail);
         btnFavorit = findViewById(R.id.tambahkan_favorite);
-
+        txtjudul2 = findViewById(R.id.Judul_bukuDetail2);
+        txtDeskripsi= findViewById(R.id.txt_deskripsi);
+        txtDeskripsi.setMovementMethod(new ScrollingMovementMethod());
+        txtDeskripsi.setScrollbarFadingEnabled(false);
         sesionManager = new SesionManager(this);
         String NIS = sesionManager.getUserDetail().get(SesionManager.NIS);
         loadBookDetailsDaftarBuku();
@@ -167,8 +171,10 @@ public class detail_buku extends AppCompatActivity {
 
     private void setBookDetailsDaftarBuku(DaftarBukuData bookData) {
         txtJudul.setText(bookData.getJudulBuku());
+        txtjudul2.setText(bookData.getJudulBuku());
         txtSemester.setText(" Semester: " + bookData.getSemester());
         txtPengarang.setText(" Penerbit: " + bookData.getPenerbit());
+        txtDeskripsi.setText(bookData.getDeskripsi());
         txtJumlah.setText(bookData.getJumlah());
 
         String imageUrl = endpointUrl.BASE_URL_IMAGE + bookData.getGambar();
@@ -213,8 +219,10 @@ public class detail_buku extends AppCompatActivity {
 
     private void setBookDetailsHistoryCard(HistoryData bookDataHistory) {
         txtJudul.setText(bookDataHistory.getJudulBuku());
+        txtjudul2.setText(bookDataHistory.getJudulBuku());
         txtSemester.setText(" Semester: " + bookDataHistory.getSemester());
         txtPengarang.setText(" Penerbit: " + bookDataHistory.getPenerbit());
+        txtDeskripsi.setText(bookDataHistory.getDeskripsi());
         txtJumlah.setText(bookDataHistory.getJumlah());
 
         String imageUrl = endpointUrl.BASE_URL_IMAGE + bookDataHistory.getGambar();
@@ -259,9 +267,11 @@ public class detail_buku extends AppCompatActivity {
 
     private void setBookDetailsFavorit(DaftarFavoritData bookDatafavorit) {
         txtJudul.setText(bookDatafavorit.getNamaBuku());
+        txtjudul2.setText(bookDatafavorit.getNamaBuku());
         txtSemester.setText(" Semester: " + bookDatafavorit.getSemester());
         txtPengarang.setText(" Penerbit: " + bookDatafavorit.getPenerbit());
         txtJumlah.setText(bookDatafavorit.getJumlah());
+        txtDeskripsi.setText(bookDatafavorit.getDeskripsi());
 
         String imageUrl = endpointUrl.BASE_URL_IMAGE + bookDatafavorit.getGambar();
         Glide.with(this)
@@ -304,9 +314,11 @@ public class detail_buku extends AppCompatActivity {
 
     private void setBookDetailsTindakan(TindakanData bookDataTindakan) {
         txtJudul.setText(bookDataTindakan.getJudulBuku());
+        txtjudul2.setText(bookDataTindakan.getJudulBuku());
         txtSemester.setText(" Semester: " + bookDataTindakan.getSemester());
         txtPengarang.setText(" Penerbit: " + bookDataTindakan.getPenerbit());
         txtJumlah.setText(bookDataTindakan.getJumlah());
+        txtDeskripsi.setText(bookDataTindakan.getDeskripsi());
 
         String imageUrl = endpointUrl.BASE_URL_IMAGE + bookDataTindakan.getGambar();
         Glide.with(this)

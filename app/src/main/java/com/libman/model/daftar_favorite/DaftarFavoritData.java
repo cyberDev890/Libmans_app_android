@@ -4,78 +4,88 @@ import com.google.gson.annotations.SerializedName;
 
 public class DaftarFavoritData {
 
-	@SerializedName("nama_buku")
-	private String namaBuku;
+    @SerializedName("nama_buku")
+    private String namaBuku;
 
-	@SerializedName("penerbit")
-	private String penerbit;
+    @SerializedName("penerbit")
+    private String penerbit;
 
-	@SerializedName("semester")
-	private String semester;
+    @SerializedName("semester")
+    private String semester;
 
-	@SerializedName("tahun_terima")
-	private String tahunTerima;
-	@SerializedName("id_buku")
-	private int id_buku;
+    @SerializedName("tahun_terima")
+    private String tahunTerima;
+    @SerializedName("id_buku")
+    private int id_buku;
 
-	@SerializedName("jumlah")
-	private String jumlah;
-	@SerializedName("gambar")
-	private String gambar;
+    @SerializedName("jumlah")
+    private String jumlah;
+    @SerializedName("gambar")
+    private String gambar;
+    @SerializedName("deskripsi")
+    private String deskripsi;
 
-	public void setNamaBuku(String namaBuku){
-		this.namaBuku = namaBuku;
-	}
+    public void setDeskripsi(String deskripsi) {
+        this.deskripsi = deskripsi;
+    }
 
-	public String getNamaBuku(){
-		return namaBuku;
-	}
+    public String getDeskripsi() {
+        return deskripsi;
+    }
 
-	public void setJumlah(String jumlah){
-		this.jumlah = jumlah;
-	}
+    public void setNamaBuku(String namaBuku) {
+        this.namaBuku = namaBuku;
+    }
 
-	public String getJumlah(){
-		return jumlah;
-	}
+    public String getNamaBuku() {
+        return namaBuku;
+    }
 
-	public void setPenerbit(String penerbit){
-		this.penerbit = penerbit;
-	}
+    public void setJumlah(String jumlah) {
+        this.jumlah = jumlah;
+    }
 
-	public String getPenerbit(){
-		return penerbit;
-	}
+    public String getJumlah() {
+        return jumlah;
+    }
 
-	public void setSemester(String semester){
-		this.semester = semester;
-	}
+    public void setPenerbit(String penerbit) {
+        this.penerbit = penerbit;
+    }
 
-	public String getSemester(){
-		return semester;
-	}
+    public String getPenerbit() {
+        return penerbit;
+    }
 
-	public void setTahunTerima(String tahunTerima){
-		this.tahunTerima = tahunTerima;
-	}
+    public void setSemester(String semester) {
+        this.semester = semester;
+    }
 
-	public String getTahunTerima(){
-		return tahunTerima;
-	}
+    public String getSemester() {
+        return semester;
+    }
 
-	public void setGambar(String gambar){
-		this.gambar = gambar;
-	}
+    public void setTahunTerima(String tahunTerima) {
+        this.tahunTerima = tahunTerima;
+    }
 
-	public String getGambar(){
-		return gambar;
-	}
+    public String getTahunTerima() {
+        return tahunTerima;
+    }
 
-	public void setId_buku(int id_buku){
-		this.id_buku = id_buku;
-	}
+    public void setGambar(String gambar) {
+        this.gambar = gambar;
+    }
 
-	public int getId_buku(){
-		return id_buku;
-	}
+    public String getGambar() {
+        return gambar;
+    }
+
+    public void setId_buku(int id_buku) {
+        this.id_buku = id_buku;
+    }
+
+    public int getId_buku() {
+        return id_buku;
+    }
 }

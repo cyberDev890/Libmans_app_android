@@ -21,6 +21,17 @@ public class HistoryData {
 
     @SerializedName("tanggal_pengembalian")
     private String tanggalPengembalian;
+    @SerializedName("deskripsi")
+    private String deskripsi;
+
+    public void setDeskripsi(String deskripsi) {
+        this.deskripsi = deskripsi;
+    }
+
+    public String getDeskripsi() {
+        return deskripsi;
+    }
+
 
     public void setId_buku(int id_buku) {
         this.id_buku = id_buku;

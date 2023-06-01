@@ -21,6 +21,7 @@ import com.libman.ui.detail_buku;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class daftarFavoritAdapter extends RecyclerView.Adapter<daftarFavoritAdapter.ViewHolder> implements Filterable {
 
     private List<DaftarFavoritData> DaftarFavoritDataList;
@@ -47,14 +48,12 @@ public class daftarFavoritAdapter extends RecyclerView.Adapter<daftarFavoritAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
-        DaftarFavoritData daftarFavoritData = DaftarFavoritDataList.get(position);
+        DaftarFavoritData daftarFavoritData = filteredList.get(position);
         holder.txtJudul.setText(daftarFavoritData.getNamaBuku());
         holder.txtSemester.setText("Semester: " + daftarFavoritData.getSemester());
         holder.txtPenerbit.setText("Penerbit: " + daftarFavoritData.getPenerbit());
         holder.txtTahun.setText("Tahun Terbit: " + daftarFavoritData.getTahunTerima());
 
-        // Load image using Glide or  n other image loading library
         String imageUrl = endpointUrl.BASE_URL_IMAGE + daftarFavoritData.getGambar();
         Glide.with(holder.itemView.getContext())
                 .load(imageUrl)
@@ -63,13 +62,11 @@ public class daftarFavoritAdapter extends RecyclerView.Adapter<daftarFavoritAdap
         holder.imgBuku.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Navigate to detail book page, passing the book ID
                 Intent intent = new Intent(v.getContext(), detail_buku.class);
                 intent.putExtra("id_buku", daftarFavoritData.getId_buku());
                 v.getContext().startActivity(intent);
             }
         });
-
     }
 
     @Override
@@ -97,7 +94,7 @@ public class daftarFavoritAdapter extends RecyclerView.Adapter<daftarFavoritAdap
             @Override
             protected FilterResults performFiltering(CharSequence charSequence) {
                 String keyword = charSequence.toString().toLowerCase().trim();
-               List<DaftarFavoritData> filteredData = new ArrayList<>();
+                List<DaftarFavoritData> filteredData = new ArrayList<>();
 
                 if (keyword.isEmpty()) {
                     filteredData = DaftarFavoritDataList;

@@ -134,16 +134,14 @@ public class pengaturan_privasi extends Fragment {
                 String nama = txt_Nama.getText().toString().trim();
                 Bitmap imageBitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
 
-
                 // Mengubah Bitmap menjadi byte array
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
                 byte[] imageBytes = baos.toByteArray();
 
-
                 // Membuat RequestBody untuk file gambar
                 RequestBody requestBody = RequestBody.create(MediaType.parse("image/jpeg"), imageBytes);
-                MultipartBody.Part filePart = MultipartBody.Part.createFormData("gambar", "profile.jpg", requestBody);
+                MultipartBody.Part filePart = MultipartBody.Part.createFormData("gambar", "default.jpg", requestBody);
 
                 // Membuat RequestBody untuk data siswa
                 RequestBody nisBody = RequestBody.create(MediaType.parse("text/plain"), nis);

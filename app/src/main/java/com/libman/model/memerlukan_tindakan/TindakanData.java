@@ -28,6 +28,17 @@ public class TindakanData {
 
     @SerializedName("tahun_terima")
     private String tahun_terima;
+    @SerializedName("deskripsi")
+    private String deskripsi;
+
+    public void setDeskripsi(String deskripsi) {
+        this.deskripsi = deskripsi;
+    }
+
+    public String getDeskripsi() {
+        return deskripsi;
+    }
+
 
     public void setPenerbit(String penerbit) {
         this.penerbit = penerbit;

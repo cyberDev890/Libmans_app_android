@@ -117,33 +117,34 @@ public class signin_screen extends AppCompatActivity implements View.OnClickList
 
     }
 
-    private void login(String nis, String password,String fcmToken){
+    private void login(String nis, String password, String fcmToken) {
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        Call<Login> loginCall = apiInterface.loginResponse(nis, password,fcmToken);
+        Call<Login> loginCall = apiInterface.loginResponse(nis, password, fcmToken);
         loginCall.enqueue(new Callback<Login>() {
             @Override
             public void onResponse(Call<Login> call, Response<Login> response) {
-                if (response.body() != null && response.isSuccessful() && response.body().isStatus()) {
-                    LoginData logindata = response.body().getData();
-                    sesionManager = new SesionManager(signin_screen.this);
-                    sesionManager.createLoginSesion(logindata);
-                    Snackbar.make(findViewById(R.id.btn_masuk), response.body().getMessage(), Snackbar.LENGTH_LONG).show();
-                    Toast.makeText(signin_screen.this, response.body().getData().getNamaSiswa(), Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(signin_screen.this, dashboard.class);
-                    startActivity(intent);
-                    finish();
+                if (response.isSuccessful() && response.body() != null) {
+                    Login login = response.body();
+                    if (login.isStatus()) {
+                        LoginData logindata = login.getData();
+                        sesionManager = new SesionManager(signin_screen.this);
+                        sesionManager.createLoginSesion(logindata);
+                        Toast.makeText(signin_screen.this, login.getMessage(), Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(signin_screen.this, dashboard.class);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        Toast.makeText(signin_screen.this, login.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
                 } else {
-                    Toast toast = Toast.makeText(signin_screen.this, response.body().getData().getNamaSiswa(), Toast.LENGTH_SHORT);
-                    View view = toast.getView();
-                    view.setBackgroundColor(getResources().getColor(R.color.dark_blue)); // Ganti dengan resource warna biru yang Anda inginkan
-                    toast.show();
+                    // Kesalahan saat mengambil respons dari API
+                    Toast.makeText(signin_screen.this, "Gagal melakukan login. Silakan coba lagi.", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Login> call, Throwable t) {
                 Toast.makeText(signin_screen.this, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-
             }
         });
     }

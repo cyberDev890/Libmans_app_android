@@ -4,80 +4,91 @@ import com.google.gson.annotations.SerializedName;
 
 public class DaftarBukuData {
 
-	@SerializedName("jumlah")
-	private String jumlah;
+    @SerializedName("jumlah")
+    private String jumlah;
 
-	@SerializedName("penerbit")
-	private String penerbit;
+    @SerializedName("penerbit")
+    private String penerbit;
 
-	@SerializedName("id_buku")
-	private int idBuku;
+    @SerializedName("id_buku")
+    private int idBuku;
 
-	@SerializedName("semester")
-	private String semester;
+    @SerializedName("semester")
+    private String semester;
 
-	@SerializedName("tahun_terima")
-	private String tahunTerima;
+    @SerializedName("tahun_terima")
+    private String tahunTerima;
 
-	@SerializedName("gambar")
-	private String gambar;
+    @SerializedName("gambar")
+    private String gambar;
 
-	@SerializedName("judul_buku")
-	private String judulBuku;
+    @SerializedName("judul_buku")
+    private String judulBuku;
 
-	public void setJumlah(String jumlah){
-		this.jumlah = jumlah;
-	}
+    @SerializedName("deskripsi")
+    private String deskripsi;
 
-	public String getJumlah(){
-		return jumlah;
-	}
+    public void setDeskripsi(String deskripsi) {
+        this.deskripsi = deskripsi;
+    }
 
-	public void setPenerbit(String penerbit){
-		this.penerbit = penerbit;
-	}
+    public String getDeskripsi() {
+        return deskripsi;
+    }
 
-	public String getPenerbit(){
-		return penerbit;
-	}
+    public void setJumlah(String jumlah) {
+        this.jumlah = jumlah;
+    }
 
-	public void setIdBuku(int idBuku){
-		this.idBuku = idBuku;
-	}
+    public String getJumlah() {
+        return jumlah;
+    }
 
-	public int getIdBuku(){
-		return idBuku;
-	}
+    public void setPenerbit(String penerbit) {
+        this.penerbit = penerbit;
+    }
 
-	public void setSemester(String semester){
-		this.semester = semester;
-	}
+    public String getPenerbit() {
+        return penerbit;
+    }
 
-	public String getSemester(){
-		return semester;
-	}
+    public void setIdBuku(int idBuku) {
+        this.idBuku = idBuku;
+    }
 
-	public void setTahunTerima(String tahunTerima){
-		this.tahunTerima = tahunTerima;
-	}
+    public int getIdBuku() {
+        return idBuku;
+    }
 
-	public String getTahunTerima(){
-		return tahunTerima;
-	}
+    public void setSemester(String semester) {
+        this.semester = semester;
+    }
 
-	public void setGambar(String gambar){
-		this.gambar = gambar;
-	}
+    public String getSemester() {
+        return semester;
+    }
 
-	public String getGambar(){
-		return gambar;
-	}
+    public void setTahunTerima(String tahunTerima) {
+        this.tahunTerima = tahunTerima;
+    }
 
-	public void setJudulBuku(String judulBuku){
-		this.judulBuku = judulBuku;
-	}
+    public String getTahunTerima() {
+        return tahunTerima;
+    }
 
-	public String getJudulBuku(){
-		return judulBuku;
-	}
+    public void setGambar(String gambar) {
+        this.gambar = gambar;
+    }
+
+    public String getGambar() {
+        return gambar;
+    }
+
+    public void setJudulBuku(String judulBuku) {
+        this.judulBuku = judulBuku;
+    }
+
+    public String getJudulBuku() {
+        return judulBuku;
+    }
 }

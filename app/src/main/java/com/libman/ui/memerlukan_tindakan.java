@@ -7,10 +7,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -38,6 +41,7 @@ public class memerlukan_tindakan extends Fragment {
     SesionManager sesionManager;
     private String _Nis;
     private tindakanAdapter TindakanAdapter;
+    private TextView cariTindakan;
     private SwipeRefreshLayout swipeRefreshLayout;
     private LottieAnimationView animationView;
     private ProgressBar pbData;
@@ -52,12 +56,31 @@ public class memerlukan_tindakan extends Fragment {
         sesionManager = new SesionManager(getActivity());
         String NIS = sesionManager.getUserDetail().get(SesionManager.NIS);
         rvTindakan = view.findViewById(R.id.rv_tindakan);
+        cariTindakan = view.findViewById(R.id.edt_cariTindakan);
         swipeRefreshLayout = view.findViewById(R.id.refreshertindakan);
         animationView=view.findViewById(R.id.lottie_emptyTindakan);
+        animationView.setScale(0.2f);
         rvTindakan.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         TindakanAdapter = new tindakanAdapter();
         rvTindakan.setAdapter(TindakanAdapter);
         // Fetch history data
+        cariTindakan.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                // Do nothing
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                TindakanAdapter.getFilter().filter(charSequence);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                // Do nothing
+            }
+        });
+
         fetchTindakanData(NIS);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override

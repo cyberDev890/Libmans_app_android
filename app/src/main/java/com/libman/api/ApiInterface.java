@@ -1,5 +1,6 @@
 package com.libman.api;
 
+import com.libman.model.RateBuku.RateBuku;
 import com.libman.model.daftar_favorite.DaftarFavorit;
 import com.libman.model.daftar_favorite.TambahFavorit;
 import com.libman.model.daftarbuku.DaftarBuku;
@@ -9,7 +10,6 @@ import com.libman.model.login.Login;
 import com.libman.model.memerlukan_tindakan.Tindakan;
 import com.libman.model.profile.Profile;
 import com.libman.model.register.Register;
-import com.libman.model.sendToken.FcmToken;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -84,6 +84,9 @@ public interface ApiInterface {
 
     @GET("daftarkelas")
     Call<DaftarKelas> getDaftarKelas();
+
+    @GET("statistikbuku")
+    Call<RateBuku> getStatistikbuku();
 
 
 

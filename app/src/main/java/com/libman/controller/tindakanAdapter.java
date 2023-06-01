@@ -3,6 +3,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,22 +14,27 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.libman.R;
 import com.libman.api.endpointUrl;
+import com.libman.model.daftar_favorite.DaftarFavoritData;
 import com.libman.model.memerlukan_tindakan.TindakanData;
 import com.libman.ui.detail_buku;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class tindakanAdapter extends RecyclerView.Adapter<tindakanAdapter.ViewHolder> {
+public class tindakanAdapter extends RecyclerView.Adapter<tindakanAdapter.ViewHolder>implements Filterable {
 
     private List<TindakanData> tindakanDataList;
+    private List<TindakanData> filteredList;
 
     public tindakanAdapter() {
         this.tindakanDataList = new ArrayList<>();
+        this.filteredList = new ArrayList<>();
+
     }
 
     public void setData(List<TindakanData> tindakanDataList) {
         this.tindakanDataList = tindakanDataList;
+        this.filteredList = tindakanDataList;
     }
 
     @NonNull
@@ -40,7 +47,7 @@ public class tindakanAdapter extends RecyclerView.Adapter<tindakanAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        TindakanData tindakanData = tindakanDataList.get(position);
+        TindakanData tindakanData = filteredList.get(position);
         holder.txtJudul.setText(tindakanData.getJudulBuku());
         holder.txtSemester.setText("Semester: " + tindakanData.getSemester());
         holder.txtPenerbit.setText("Penerbit: " + tindakanData.getPenerbit());
@@ -67,7 +74,7 @@ public class tindakanAdapter extends RecyclerView.Adapter<tindakanAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return tindakanDataList.size();
+        return filteredList.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -83,5 +90,35 @@ public class tindakanAdapter extends RecyclerView.Adapter<tindakanAdapter.ViewHo
             txtPenerbit = itemView.findViewById(R.id.penerbitTindakan);
             txtTanggal = itemView.findViewById(R.id.jumlahTindakan);
         }
+    }
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String keyword = charSequence.toString().toLowerCase().trim();
+                List<TindakanData> filteredData = new ArrayList<>();
+
+                if (keyword.isEmpty()) {
+                    filteredData = tindakanDataList;
+                } else {
+                    for (TindakanData data : tindakanDataList) {
+                        if (data.getJudulBuku().toLowerCase().contains(keyword)) {
+                            filteredData.add(data);
+                        }
+                    }
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = filteredData;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                filteredList = (List<TindakanData>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 }
